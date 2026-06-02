@@ -1,0 +1,88 @@
+import { motion } from 'framer-motion'
+import { ArrowRight } from 'lucide-react'
+import { WordsPullUpMultiStyle } from './animations/WordsPullUpMultiStyle'
+import { MagneticButton } from './animations/MagneticButton'
+
+const easeOut = [0.16, 1, 0.3, 1] as const
+
+export function Footer() {
+  return (
+    <footer id="contact" className="relative overflow-hidden bg-black px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 md:pt-24 pb-10 sm:pb-12">
+      <div className="bloom-warm" />
+      <div className="relative max-w-5xl mx-auto">
+        <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.5rem] leading-[0.95] tracking-[-0.02em] text-center">
+          <WordsPullUpMultiStyle
+            segments={[
+              { text: 'Find me', className: 'font-normal text-primary' },
+              {
+                text: 'building.',
+                className: 'font-normal italic font-serif text-primary',
+              },
+            ]}
+            stagger={0.1}
+          />
+        </h2>
+
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8, delay: 0.4, ease: easeOut }}
+          className="mt-10 sm:mt-14 flex flex-col items-center gap-6"
+        >
+          <p className="text-primary/60 text-sm sm:text-base text-center max-w-xl leading-relaxed">
+            Open to Founder Office and senior PM roles in India and the UK.
+            Hit me up if you're building something AI-native that needs a PM
+            who can prototype as well as PRD.
+          </p>
+
+          <MagneticButton strength={0.25}>
+            <a
+              href="mailto:aryansaharan30@gmail.com"
+              className="group inline-flex items-center gap-2 hover:gap-3 transition-all bg-primary text-black rounded-full pl-5 pr-1.5 py-1.5 font-medium text-sm sm:text-base"
+            >
+              aryansaharan30@gmail.com
+              <span className="bg-black rounded-full w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center group-hover:scale-110 transition-transform">
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" color="#E1E0CC" />
+              </span>
+            </a>
+          </MagneticButton>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 1, delay: 0.6 }}
+          className="mt-16 sm:mt-20 grid grid-cols-2 sm:grid-cols-4 gap-4 text-[11px] sm:text-[13px] uppercase tracking-[0.26em] text-primary/55"
+        >
+          <a
+            href="https://linkedin.com/in/aryansaharan1"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:text-primary transition-colors"
+          >
+            LinkedIn
+          </a>
+          <a
+            href="mailto:aryansaharan30@gmail.com"
+            className="hover:text-primary transition-colors"
+          >
+            Email
+          </a>
+          <a
+            href="/Aryan_Saharan.pdf"
+            className="hover:text-primary transition-colors"
+          >
+            Résumé PDF
+          </a>
+          <div className="text-primary/30">Gurgaon · GMT+5:30</div>
+        </motion.div>
+
+        <div className="mt-12 sm:mt-16 pt-6 border-t border-primary/5 text-[10px] sm:text-xs text-primary/30 text-center">
+          © {new Date().getFullYear()} Aryan Saharan
+        </div>
+      </div>
+    </footer>
+  )
+}
