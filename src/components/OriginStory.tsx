@@ -79,9 +79,9 @@ export function OriginStory() {
                 delay: 0.15 + i * 0.12,
                 ease: easeOut,
               }}
-              className="group relative bg-[#101010] border border-primary/5 rounded-2xl p-6 sm:p-7 hover:border-primary/15 transition-colors"
+              className="group relative bg-[#101010] border border-primary/10 rounded-2xl p-6 sm:p-7 hover:border-primary/25 transition-colors"
             >
-              <div className="text-[11px] sm:text-[13px] uppercase tracking-[0.24em] text-primary/55 font-medium mb-3">
+              <div className="text-[11px] sm:text-[13px] uppercase tracking-[0.24em] text-primary/70 font-medium mb-3">
                 Belief 0{i + 1}
               </div>
               <div className="text-lg sm:text-xl md:text-2xl font-serif italic leading-tight text-primary mb-3">

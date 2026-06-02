@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 
 type Props = {
   items: string[]
@@ -7,6 +7,7 @@ type Props = {
 }
 
 export function Marquee({ items, speed = 38 }: Props) {
+  const reduceMotion = useReducedMotion()
   const loop = [...items, ...items]
   return (
     <div
@@ -15,8 +16,12 @@ export function Marquee({ items, speed = 38 }: Props) {
     >
       <motion.div
         className="flex whitespace-nowrap will-change-transform"
-        animate={{ x: ['0%', '-50%'] }}
-        transition={{ duration: speed, repeat: Infinity, ease: 'linear' }}
+        animate={reduceMotion ? undefined : { x: ['0%', '-50%'] }}
+        transition={
+          reduceMotion
+            ? undefined
+            : { duration: speed, repeat: Infinity, ease: 'linear' }
+        }
       >
         {loop.map((item, i) => (
           <span

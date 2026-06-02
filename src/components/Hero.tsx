@@ -75,32 +75,65 @@ export function Hero() {
           </motion.nav>
         </div>
 
-        {/* Hero content: greeting wordmark mid-cliff, tagline + CTA bottom-right */}
+        {/* Hero content: ONE flex column filling the hero, in normal flow.
+            Three siblings that cannot overlap by construction:
+              1. top spacer  : clears the top-center nav pill
+              2. headline    : flex-1 min-h-0, centered, collapses first on short screens
+              3. base block  : shrink-0 tagline + CTA, pinned to the bottom
+            The couplet font is clamp()-bounded, so it can neither balloon on wide
+            screens nor shrink illegibly on a 360px phone. The base block carries
+            bottom padding to clear the fixed MusicPlayer pill in the corner. */}
         <motion.div
           style={{ y: contentY, opacity: contentOpacity }}
-          className="absolute inset-0 z-10 pointer-events-none"
+          className="absolute inset-0 z-10 flex flex-col items-center pointer-events-none"
         >
-          {/* Bottom-right: tagline + CTA. Pushed up to clear the music player pill in the corner. */}
-          <div className="absolute bottom-28 sm:bottom-32 md:bottom-32 lg:bottom-32 right-4 sm:right-6 md:right-8 lg:right-12 max-w-[18rem] sm:max-w-[22rem] md:max-w-[26rem] lg:max-w-[28rem] pointer-events-auto">
+          {/* Top spacer: keeps the headline clear of the top-center nav pill. */}
+          <div aria-hidden className="h-16 sm:h-20 md:h-24 shrink-0" />
+
+          {/* Headline region: centered couplet. flex-1 min-h-0 lets it take only
+              the leftover space, so on a short laptop it collapses toward the base
+              block instead of crossing into the tagline. */}
+          <div className="flex-1 min-h-0 w-full flex flex-col items-center justify-end px-5 sm:px-8 md:px-12">
+            <div className="w-full max-w-[min(92vw,60rem)] text-center">
+              <h1
+                className="font-bold leading-[1.18] tracking-[-0.04em]"
+                style={{ color: '#E1E0CC', fontSize: 'clamp(1.9rem, 6.2vw, 5rem)' }}
+              >
+                <WordsPullUp text="Glad you climbed up." />
+              </h1>
+              <h2
+                className="italic font-serif font-normal leading-[1.18] tracking-[-0.02em]"
+                style={{ color: '#E1E0CC', fontSize: 'clamp(1.9rem, 6.2vw, 5rem)' }}
+              >
+                <WordsPullUp text="View's worth it." />
+              </h2>
+            </div>
+          </div>
+
+          {/* Base block: structurally separate flex child anchored to the bottom.
+              Reserves its own height (shrink-0) so the headline shrinks to fit.
+              Bottom padding clears the corner MusicPlayer pill at every size. */}
+          <div className="shrink-0 w-full flex flex-col items-center px-5 sm:px-8 md:px-12 pb-24 sm:pb-28 md:pb-32">
             <motion.p
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.5, ease: easeOut }}
-              className="text-primary/90 text-sm sm:text-base md:text-lg lg:text-xl text-right"
-              style={{ lineHeight: 1.4 }}
+              className="max-w-[34rem] text-center text-primary/80 text-sm sm:text-base md:text-lg"
+              style={{ lineHeight: 1.45 }}
             >
               PM by title. Engineer by reflex. Builder by instinct.
             </motion.p>
+
             <motion.div
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.7, ease: easeOut }}
-              className="mt-5 sm:mt-6 flex justify-end"
+              className="mt-6 sm:mt-7 flex justify-center pointer-events-auto"
             >
               <MagneticButton strength={0.25}>
                 <a
                   href="#contact"
-                  className="group inline-flex items-center gap-2 hover:gap-3 transition-all bg-primary text-black rounded-full pl-5 pr-1.5 py-1.5 font-medium text-sm sm:text-base"
+                  className="group inline-flex items-center gap-2 hover:gap-3 transition-all bg-primary text-black rounded-full pl-5 pr-1.5 py-1.5 font-bold text-sm sm:text-base"
                 >
                   Get in touch
                   <span className="bg-black rounded-full w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center group-hover:scale-110 transition-transform">
@@ -112,22 +145,6 @@ export function Hero() {
                 </a>
               </MagneticButton>
             </motion.div>
-          </div>
-
-          {/* Hero greeting: two-line couplet, sits in the middle of the lower half (below the figure, vertically central on the page) */}
-          <div className="absolute inset-x-0 top-[72%] sm:top-[74%] md:top-[76%] -translate-y-1/2 px-4 md:px-8 lg:px-12 flex flex-col items-center pointer-events-none">
-            <h1
-              className="font-medium leading-[1.15] tracking-[-0.04em] text-[8vw] sm:text-[7vw] md:text-[6.5vw] lg:text-[6vw] xl:text-[5.5vw] text-center"
-              style={{ color: '#E1E0CC' }}
-            >
-              <WordsPullUp text="Glad you climbed up." />
-            </h1>
-            <h2
-              className="italic font-serif font-normal leading-[1.15] tracking-[-0.02em] text-[8vw] sm:text-[7vw] md:text-[6.5vw] lg:text-[6vw] xl:text-[5.5vw] text-center"
-              style={{ color: '#E1E0CC' }}
-            >
-              <WordsPullUp text="View's worth it." />
-            </h2>
           </div>
         </motion.div>
       </div>

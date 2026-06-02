@@ -24,11 +24,12 @@ export function IntroOverlay() {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.75, ease: easeOut }}
-          className="fixed inset-0 z-[150] bg-black flex items-center justify-center pointer-events-none px-6"
+          onClick={() => setDone(true)}
+          className="fixed inset-0 z-[150] bg-black flex items-center justify-center cursor-pointer px-6"
         >
           <div className="flex flex-col items-center gap-4 sm:gap-5">
             {/* Name */}
-            <div className="text-primary tracking-[0.5em] uppercase text-base sm:text-lg md:text-xl font-medium select-none flex">
+            <div className="text-primary tracking-[0.5em] uppercase text-base sm:text-lg md:text-xl font-bold select-none flex">
               {'ARYAN  SAHARAN'.split('').map((c, i) => (
                 <motion.span
                   key={i}

@@ -8,8 +8,10 @@ export function CustomCursor() {
 
   useEffect(() => {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    const isTouch = window.matchMedia('(pointer: coarse)').matches
-    if (reducedMotion || isTouch) return
+    // Only take over the cursor on a real mouse. A hybrid laptop (touchscreen +
+    // trackpad) matches (pointer: coarse), so gate on a fine hover pointer instead.
+    const hasMousePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches
+    if (reducedMotion || !hasMousePointer) return
     setEnabled(true)
     document.documentElement.classList.add('custom-cursor-active')
 

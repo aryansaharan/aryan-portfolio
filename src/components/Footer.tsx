@@ -7,7 +7,7 @@ const easeOut = [0.16, 1, 0.3, 1] as const
 
 export function Footer() {
   return (
-    <footer id="contact" className="relative overflow-hidden bg-black px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 md:pt-24 pb-10 sm:pb-12">
+    <footer id="contact" className="relative overflow-hidden bg-black px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 md:pt-24 pb-28 sm:pb-32">
       <div className="bloom-warm" />
       <div className="relative max-w-5xl mx-auto">
         <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.5rem] leading-[0.95] tracking-[-0.02em] text-center">
@@ -39,7 +39,7 @@ export function Footer() {
           <MagneticButton strength={0.25}>
             <a
               href="mailto:aryansaharan30@gmail.com"
-              className="group inline-flex items-center gap-2 hover:gap-3 transition-all bg-primary text-black rounded-full pl-5 pr-1.5 py-1.5 font-medium text-sm sm:text-base"
+              className="group inline-flex items-center gap-2 hover:gap-3 transition-all bg-primary text-black rounded-full pl-5 pr-1.5 py-1.5 font-bold text-sm sm:text-base"
             >
               aryansaharan30@gmail.com
               <span className="bg-black rounded-full w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center group-hover:scale-110 transition-transform">
@@ -54,32 +54,32 @@ export function Footer() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 1, delay: 0.6 }}
-          className="mt-16 sm:mt-20 grid grid-cols-2 sm:grid-cols-4 gap-4 text-[11px] sm:text-[13px] uppercase tracking-[0.26em] text-primary/55"
+          className="mt-16 sm:mt-20 grid grid-cols-2 sm:grid-cols-4 gap-x-4 gap-y-2 text-[11px] sm:text-[13px] uppercase tracking-[0.18em] sm:tracking-[0.26em] text-primary/55"
         >
           <a
             href="https://linkedin.com/in/aryansaharan1"
             target="_blank"
             rel="noreferrer"
-            className="hover:text-primary transition-colors"
+            className="inline-block py-2 -my-2 hover:text-primary transition-colors"
           >
             LinkedIn
           </a>
           <a
             href="mailto:aryansaharan30@gmail.com"
-            className="hover:text-primary transition-colors"
+            className="inline-block py-2 -my-2 hover:text-primary transition-colors"
           >
             Email
           </a>
           <a
             href="/Aryan_Saharan.pdf"
-            className="hover:text-primary transition-colors"
+            className="inline-block py-2 -my-2 hover:text-primary transition-colors"
           >
-            Résumé PDF
+            Resume PDF
           </a>
-          <div className="text-primary/30">Gurgaon · GMT+5:30</div>
+          <div className="col-span-2 sm:col-span-1 text-primary/55">Gurgaon · GMT+5:30</div>
         </motion.div>
 
-        <div className="mt-12 sm:mt-16 pt-6 border-t border-primary/5 text-[10px] sm:text-xs text-primary/30 text-center">
+        <div className="mt-12 sm:mt-16 pt-6 border-t border-primary/5 text-[10px] sm:text-xs text-primary/45 text-center">
           © {new Date().getFullYear()} Aryan Saharan
         </div>
       </div>

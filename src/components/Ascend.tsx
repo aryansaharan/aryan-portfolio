@@ -46,7 +46,7 @@ export function Ascend() {
         <div className="text-center mb-6 sm:mb-8">
           <div className="relative inline-block group">
             <div className="ascend-hover-aurora opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-out" />
-            <h2 className="relative text-6xl sm:text-7xl md:text-8xl lg:text-[8rem] xl:text-[10rem] leading-[0.9] tracking-[-0.03em]">
+            <h2 className="relative text-6xl sm:text-7xl md:text-8xl lg:text-[8rem] xl:text-[8.5rem] leading-[0.9] tracking-[-0.03em]">
               <WordsPullUpMultiStyle
                 segments={[
                   {
@@ -79,9 +79,9 @@ export function Ascend() {
               whileInView={{ y: 0, opacity: 1 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.9, delay: 0.1 + i * 0.1, ease: easeOut }}
-              className="bg-[#101010] border border-primary/5 rounded-2xl p-6 sm:p-7 hover:border-primary/15 transition-colors"
+              className="bg-[#101010] border border-primary/10 rounded-2xl p-6 sm:p-7 hover:border-primary/25 transition-colors"
             >
-              <div className="text-[11px] sm:text-[13px] uppercase tracking-[0.24em] text-primary/55 font-medium mb-3">
+              <div className="text-[11px] sm:text-[13px] uppercase tracking-[0.24em] text-primary/70 font-medium mb-3">
                 {b.label}
               </div>
               <div className="text-base sm:text-lg text-primary/85 leading-snug">
@@ -99,10 +99,10 @@ export function Ascend() {
           className="flex justify-center"
         >
           <a
-            href="https://ascend.aryansaharan.com"
+            href="https://ascendmvp.vercel.app"
             target="_blank"
             rel="noreferrer"
-            className="group inline-flex items-center gap-2 bg-primary text-black rounded-full pl-5 pr-1.5 py-1.5 font-medium text-sm sm:text-base hover:gap-3 transition-all"
+            className="group inline-flex items-center gap-2 bg-primary text-black rounded-full pl-5 pr-1.5 py-1.5 font-bold text-sm sm:text-base hover:gap-3 transition-all"
           >
             See Ascend live
             <span className="bg-black rounded-full w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center group-hover:scale-110 transition-transform">

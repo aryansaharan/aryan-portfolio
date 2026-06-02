@@ -36,7 +36,7 @@ export function Currently() {
             Currently
           </div>
           <div className="text-primary/50 text-[11px] sm:text-[13px] uppercase tracking-[0.28em]">
-            May 2026
+            June 2026
           </div>
         </div>
 
@@ -48,9 +48,9 @@ export function Currently() {
               whileInView={{ y: 0, opacity: 1 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.7, delay: i * 0.1, ease: easeOut }}
-              className="grid grid-cols-12 gap-4 items-baseline border-b border-primary/5 pb-6 sm:pb-8 last:border-0"
+              className="grid grid-cols-12 gap-4 items-start border-b border-primary/5 pb-6 sm:pb-8 last:border-0"
             >
-              <div className="col-span-12 sm:col-span-4 text-primary/40 text-sm sm:text-base font-serif italic">
+              <div className="col-span-12 sm:col-span-4 text-primary/55 text-sm sm:text-base font-serif italic">
                 {item.label}
               </div>
               <div className="col-span-12 sm:col-span-8 flex flex-col gap-1 text-base sm:text-lg md:text-xl text-primary leading-snug">

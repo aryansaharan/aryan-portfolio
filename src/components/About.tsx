@@ -23,7 +23,7 @@ export function About() {
           About
         </div>
 
-        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl max-w-3xl mx-auto leading-[0.95] sm:leading-[0.9]">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl max-w-3xl mx-auto leading-[0.95] sm:leading-[0.9]">
           <WordsPullUpMultiStyle
             segments={[
               { text: 'I am Aryan Saharan,', className: 'font-normal' },
@@ -41,7 +41,7 @@ export function About() {
 
         <p
           ref={ref}
-          className="mt-10 sm:mt-14 max-w-2xl mx-auto text-xs sm:text-sm md:text-base leading-relaxed"
+          className="mt-10 sm:mt-14 max-w-2xl mx-auto text-sm sm:text-base md:text-lg leading-relaxed"
           style={{ color: '#DEDBC8' }}
         >
           {chars.map((c, i) => (
