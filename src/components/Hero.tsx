@@ -75,40 +75,35 @@ export function Hero() {
           </motion.nav>
         </div>
 
-        {/* Hero content: vertical flex column. The greeting couplet sits centered
-            in the lower-middle, just below the figure on the cliff. The tagline +
-            CTA live in their own block, bottom-left on desktop and centered above
-            the music player on mobile. Spacers reserve space so nothing overlaps. */}
+        {/* Hero content. The greeting couplet is anchored at a fixed fraction below
+            the seated figure, with viewport-HEIGHT-aware sizing (min(vw,vh)) so it
+            shrinks on short laptop viewports and stays clear of the figure instead of
+            riding up over it. The tagline + CTA sit bottom-left on desktop, centered
+            above the music player on mobile. */}
         <motion.div
           style={{ y: contentY, opacity: contentOpacity }}
-          className="absolute inset-0 z-10 flex flex-col pointer-events-none"
+          className="absolute inset-0 z-10 pointer-events-none"
         >
-          {/* Upper spacer: clears the top nav pill and biases the couplet below the figure. */}
-          <div aria-hidden className="flex-[7] min-h-16 sm:min-h-20" />
-
-          {/* Greeting couplet: centered, in the middle of the page below the figure. */}
-          <div className="shrink-0 w-full flex justify-center px-5 sm:px-8 md:px-12">
-            <div className="w-full max-w-[min(92vw,60rem)] text-center">
+          {/* Greeting couplet: centered, anchored below the figure. */}
+          <div className="absolute inset-x-0 top-[60%] flex justify-center px-5 sm:px-8 md:px-12">
+            <div className="w-full max-w-[min(92vw,56rem)] text-center">
               <h1
-                className="font-bold leading-[1.18] tracking-[-0.04em]"
-                style={{ color: '#E1E0CC', fontSize: 'clamp(1.7rem, 5.3vw, 4.25rem)' }}
+                className="font-bold leading-[1.16] tracking-[-0.04em]"
+                style={{ color: '#E1E0CC', fontSize: 'clamp(1.55rem, min(4.6vw, 5.8vh), 3.9rem)' }}
               >
                 <WordsPullUp text="Glad you climbed up." />
               </h1>
               <h2
-                className="italic font-serif font-normal leading-[1.18] tracking-[-0.02em]"
-                style={{ color: '#E1E0CC', fontSize: 'clamp(1.7rem, 5.3vw, 4.25rem)' }}
+                className="italic font-serif font-normal leading-[1.16] tracking-[-0.02em]"
+                style={{ color: '#E1E0CC', fontSize: 'clamp(1.55rem, min(4.6vw, 5.8vh), 3.9rem)' }}
               >
                 <WordsPullUp text="View's worth it." />
               </h2>
             </div>
           </div>
 
-          {/* Lower spacer keeps the couplet clear of the bottom block. */}
-          <div aria-hidden className="flex-1 min-h-10" />
-
           {/* Tagline + CTA: bottom-left on desktop, centered above the player on mobile. */}
-          <div className="shrink-0 w-full px-5 sm:px-8 md:px-12 pb-24 sm:pb-12 md:pb-14 flex justify-center sm:justify-start">
+          <div className="absolute inset-x-5 sm:inset-x-8 md:inset-x-12 bottom-24 sm:bottom-10 md:bottom-12 flex justify-center sm:justify-start">
             <div className="flex flex-col items-center sm:items-start max-w-[20rem] text-center sm:text-left">
               <motion.p
                 initial={{ y: 20, opacity: 0 }}
