@@ -49,6 +49,33 @@ export function MusicPlayer() {
     }
   }, [])
 
+  // Keep the music on. Try to autoplay; browsers block autoplay with sound on a
+  // fresh visit, so fall back to starting on the visitor's first interaction
+  // (any click, key, tap, or scroll). Runs once; manual pause stays paused.
+  useEffect(() => {
+    const a = audioRef.current
+    if (!a) return
+    const events = ['pointerdown', 'keydown', 'touchstart', 'scroll', 'wheel']
+    let started = false
+    const start = () => {
+      if (started) return
+      started = true
+      events.forEach((e) => window.removeEventListener(e, start))
+      a.volume = 0.55
+      a.play().then(() => setPlaying(true)).catch(() => {})
+    }
+    a.volume = 0.55
+    a.play()
+      .then(() => {
+        started = true
+        setPlaying(true)
+      })
+      .catch(() => {
+        events.forEach((e) => window.addEventListener(e, start, { passive: true }))
+      })
+    return () => events.forEach((e) => window.removeEventListener(e, start))
+  }, [])
+
   const toggle = async () => {
     const a = audioRef.current
     if (!a) return
@@ -73,7 +100,7 @@ export function MusicPlayer() {
       transition={{ duration: 0.8, delay: 1.2, ease: easeOut }}
       className="fixed z-50 bottom-4 right-4 sm:bottom-6 sm:right-6"
     >
-      <audio ref={audioRef} src={TRACK_URL} loop preload="none" />
+      <audio ref={audioRef} src={TRACK_URL} loop preload="auto" />
       <button
         onClick={toggle}
         aria-label={playing ? 'Pause music' : 'Play music'}
