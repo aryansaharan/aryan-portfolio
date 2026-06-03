@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 
 type Segment = { text: string; className?: string }
@@ -29,6 +30,10 @@ export function WordsPullUpMultiStyle({
     })
   })
 
+  // Clip each word only while it slides up; relax after the reveal settles so a
+  // tight line-height does not shave letters (descenders, italic ascenders).
+  const [revealed, setRevealed] = useState(false)
+
   return (
     <motion.span
       className={`inline-flex flex-wrap justify-center ${className}`}
@@ -36,11 +41,12 @@ export function WordsPullUpMultiStyle({
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
       transition={{ staggerChildren: stagger, delayChildren: delay }}
+      onAnimationComplete={() => setRevealed(true)}
     >
       {flat.map((item, i) => (
         <span
           key={i}
-          className="inline-block overflow-hidden align-bottom"
+          className={`inline-block align-bottom ${revealed ? '' : 'overflow-hidden'}`}
           style={{ marginRight: '0.25em' }}
         >
           <motion.span

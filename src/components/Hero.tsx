@@ -25,7 +25,7 @@ export function Hero() {
   const contentOpacity = useTransform(scrollYProgress, [0, 0.7, 1], [1, 1, 0.2])
 
   return (
-    <section ref={sectionRef} className="h-screen p-4 md:p-6">
+    <section ref={sectionRef} className="h-[100svh] p-4 md:p-6">
       <div className="relative h-full w-full overflow-hidden rounded-2xl md:rounded-[2rem] bg-black">
         <motion.video
           src={heroVideo}
@@ -33,8 +33,8 @@ export function Hero() {
           loop
           muted
           playsInline
-          className="absolute inset-0 h-full w-full object-cover"
-          style={{ y: videoY, scale: videoScale, objectPosition: '35% 75%' }}
+          className="absolute inset-0 h-full w-full object-cover object-[50%_58%] md:object-[35%_75%]"
+          style={{ y: videoY, scale: videoScale }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.6, ease: easeOut }}

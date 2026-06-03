@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 
 type Props = {
@@ -23,6 +24,9 @@ export function WordsPullUp({
   showAsterisk = false,
 }: Props) {
   const words = text.split(' ')
+  // Clip the word only while it slides up. After the reveal settles, relax the
+  // clip so tight line-heights do not shave letters (descenders, italic ascenders).
+  const [revealed, setRevealed] = useState(false)
 
   return (
     <motion.span
@@ -31,13 +35,14 @@ export function WordsPullUp({
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
       transition={{ staggerChildren: stagger, delayChildren: delay }}
+      onAnimationComplete={() => setRevealed(true)}
     >
       {words.map((word, i) => {
         const isLast = i === words.length - 1
         return (
           <span
             key={i}
-            className="inline-block overflow-hidden align-bottom"
+            className={`inline-block align-bottom ${revealed ? '' : 'overflow-hidden'}`}
             style={{ marginRight: '0.25em' }}
           >
             <motion.span
