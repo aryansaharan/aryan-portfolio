@@ -84,20 +84,20 @@ export function Hero() {
           className="absolute inset-0 z-10 flex flex-col pointer-events-none"
         >
           {/* Upper spacer: clears the top nav pill and biases the couplet below the figure. */}
-          <div aria-hidden className="flex-[4] min-h-16 sm:min-h-20" />
+          <div aria-hidden className="flex-[7] min-h-16 sm:min-h-20" />
 
           {/* Greeting couplet: centered, in the middle of the page below the figure. */}
           <div className="shrink-0 w-full flex justify-center px-5 sm:px-8 md:px-12">
             <div className="w-full max-w-[min(92vw,60rem)] text-center">
               <h1
                 className="font-bold leading-[1.18] tracking-[-0.04em]"
-                style={{ color: '#E1E0CC', fontSize: 'clamp(1.9rem, 6.2vw, 5rem)' }}
+                style={{ color: '#E1E0CC', fontSize: 'clamp(1.7rem, 5.3vw, 4.25rem)' }}
               >
                 <WordsPullUp text="Glad you climbed up." />
               </h1>
               <h2
                 className="italic font-serif font-normal leading-[1.18] tracking-[-0.02em]"
-                style={{ color: '#E1E0CC', fontSize: 'clamp(1.9rem, 6.2vw, 5rem)' }}
+                style={{ color: '#E1E0CC', fontSize: 'clamp(1.7rem, 5.3vw, 4.25rem)' }}
               >
                 <WordsPullUp text="View's worth it." />
               </h2>
