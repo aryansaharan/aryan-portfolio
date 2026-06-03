@@ -75,25 +75,19 @@ export function Hero() {
           </motion.nav>
         </div>
 
-        {/* Hero content: ONE flex column filling the hero, in normal flow.
-            Three siblings that cannot overlap by construction:
-              1. top spacer  : clears the top-center nav pill
-              2. headline    : flex-1 min-h-0, centered, collapses first on short screens
-              3. base block  : shrink-0 tagline + CTA, pinned to the bottom
-            The couplet font is clamp()-bounded, so it can neither balloon on wide
-            screens nor shrink illegibly on a 360px phone. The base block carries
-            bottom padding to clear the fixed MusicPlayer pill in the corner. */}
+        {/* Hero content: vertical flex column. The greeting couplet sits centered
+            in the lower-middle, just below the figure on the cliff. The tagline +
+            CTA live in their own block, bottom-left on desktop and centered above
+            the music player on mobile. Spacers reserve space so nothing overlaps. */}
         <motion.div
           style={{ y: contentY, opacity: contentOpacity }}
-          className="absolute inset-0 z-10 flex flex-col items-center pointer-events-none"
+          className="absolute inset-0 z-10 flex flex-col pointer-events-none"
         >
-          {/* Top spacer: keeps the headline clear of the top-center nav pill. */}
-          <div aria-hidden className="h-16 sm:h-20 md:h-24 shrink-0" />
+          {/* Upper spacer: clears the top nav pill and biases the couplet below the figure. */}
+          <div aria-hidden className="flex-[4] min-h-16 sm:min-h-20" />
 
-          {/* Headline region: centered couplet. flex-1 min-h-0 lets it take only
-              the leftover space, so on a short laptop it collapses toward the base
-              block instead of crossing into the tagline. */}
-          <div className="flex-1 min-h-0 w-full flex flex-col items-center justify-end px-5 sm:px-8 md:px-12">
+          {/* Greeting couplet: centered, in the middle of the page below the figure. */}
+          <div className="shrink-0 w-full flex justify-center px-5 sm:px-8 md:px-12">
             <div className="w-full max-w-[min(92vw,60rem)] text-center">
               <h1
                 className="font-bold leading-[1.18] tracking-[-0.04em]"
@@ -110,41 +104,44 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Base block: structurally separate flex child anchored to the bottom.
-              Reserves its own height (shrink-0) so the headline shrinks to fit.
-              Bottom padding clears the corner MusicPlayer pill at every size. */}
-          <div className="shrink-0 w-full flex flex-col items-center px-5 sm:px-8 md:px-12 pb-24 sm:pb-28 md:pb-32">
-            <motion.p
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.5, ease: easeOut }}
-              className="max-w-[34rem] text-center text-primary/80 text-sm sm:text-base md:text-lg"
-              style={{ lineHeight: 1.45 }}
-            >
-              PM by title. Engineer by reflex. Builder by instinct.
-            </motion.p>
+          {/* Lower spacer keeps the couplet clear of the bottom block. */}
+          <div aria-hidden className="flex-1 min-h-10" />
 
-            <motion.div
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.7, ease: easeOut }}
-              className="mt-6 sm:mt-7 flex justify-center pointer-events-auto"
-            >
-              <MagneticButton strength={0.25}>
-                <a
-                  href="#contact"
-                  className="group inline-flex items-center gap-2 hover:gap-3 transition-all bg-primary text-black rounded-full pl-5 pr-1.5 py-1.5 font-bold text-sm sm:text-base"
-                >
-                  Get in touch
-                  <span className="bg-black rounded-full w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <ArrowRight
-                      className="w-4 h-4 sm:w-5 sm:h-5"
-                      color="#E1E0CC"
-                    />
-                  </span>
-                </a>
-              </MagneticButton>
-            </motion.div>
+          {/* Tagline + CTA: bottom-left on desktop, centered above the player on mobile. */}
+          <div className="shrink-0 w-full px-5 sm:px-8 md:px-12 pb-24 sm:pb-12 md:pb-14 flex justify-center sm:justify-start">
+            <div className="flex flex-col items-center sm:items-start max-w-[20rem] text-center sm:text-left">
+              <motion.p
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.5, ease: easeOut }}
+                className="text-primary/80 text-sm sm:text-base md:text-lg"
+                style={{ lineHeight: 1.45 }}
+              >
+                PM by title. Engineer by reflex. Builder by instinct.
+              </motion.p>
+
+              <motion.div
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.7, ease: easeOut }}
+                className="mt-4 sm:mt-5 pointer-events-auto"
+              >
+                <MagneticButton strength={0.25}>
+                  <a
+                    href="#contact"
+                    className="group inline-flex items-center gap-2 hover:gap-3 transition-all bg-primary text-black rounded-full pl-5 pr-1.5 py-1.5 font-bold text-sm sm:text-base"
+                  >
+                    Get in touch
+                    <span className="bg-black rounded-full w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <ArrowRight
+                        className="w-4 h-4 sm:w-5 sm:h-5"
+                        color="#E1E0CC"
+                      />
+                    </span>
+                  </a>
+                </MagneticButton>
+              </motion.div>
+            </div>
           </div>
         </motion.div>
       </div>

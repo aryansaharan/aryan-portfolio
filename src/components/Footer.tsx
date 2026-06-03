@@ -31,9 +31,9 @@ export function Footer() {
           className="mt-10 sm:mt-14 flex flex-col items-center gap-6"
         >
           <p className="text-primary/60 text-sm sm:text-base text-center max-w-xl leading-relaxed">
-            Open to Founder Office and senior PM roles in India and the UK.
-            Hit me up if you're building something AI-native that needs a PM
-            who can prototype as well as PRD.
+            Open to Founder's Office and senior PM roles in India and the UK. If
+            you're building something AI-native and want a PM who'll prototype it
+            before they spec it, let's talk.
           </p>
 
           <MagneticButton strength={0.25}>
@@ -76,7 +76,7 @@ export function Footer() {
           >
             Resume PDF
           </a>
-          <div className="col-span-2 sm:col-span-1 text-primary/55">Gurgaon · GMT+5:30</div>
+          <div className="col-span-2 sm:col-span-1 text-primary/55">Gurgaon · IST</div>
         </motion.div>
 
         <div className="mt-12 sm:mt-16 pt-6 border-t border-primary/5 text-[10px] sm:text-xs text-primary/45 text-center">

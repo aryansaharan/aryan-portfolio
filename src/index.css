@@ -51,11 +51,6 @@ body {
   background-size: 300px 300px;
 }
 
-html.custom-cursor-active,
-html.custom-cursor-active * {
-  cursor: none !important;
-}
-
 .vinyl-disc {
   animation: vinyl-spin 6s linear infinite;
   animation-play-state: paused;

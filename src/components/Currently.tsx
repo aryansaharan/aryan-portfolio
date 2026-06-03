@@ -6,21 +6,19 @@ const easeOut = [0.16, 1, 0.3, 1] as const
 const items = [
   {
     label: 'Building',
-    lines: ['Ascend, LLM recommender integration', 'Notes on prototype-first PMing'],
+    lines: ['Shipping AI Roleplay at Lyearn', 'Voice coach personas, end to end'],
   },
   {
     label: 'Reading',
-    lines: ['Crossing the Chasm (re-read)', 'AI Engineer newsletter'],
-    placeholder: true,
+    lines: ['The Mom Test, again', 'Latent Space on voice agents'],
   },
   {
     label: 'Brewing',
-    lines: ['An essay: prototype before PRD', 'Founder Office applications'],
+    lines: ['An essay: prototype before PRD', "Founder's Office applications"],
   },
   {
     label: 'Listening to',
-    lines: ['Ambient electronic on loop', 'Long-form audio essays'],
-    placeholder: true,
+    lines: ['Lo-fi house while shipping', 'Late-night deep work mixes'],
   },
 ]
 

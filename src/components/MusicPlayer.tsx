@@ -21,9 +21,9 @@ import { motion } from 'framer-motion'
 //     Out of scope for v1; happy to wire if you commit to the dev account.
 // ──────────────────────────────────────────────────────────────────────────
 
-const TRACK_URL = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3'
-const TRACK_TITLE = 'Background music'
-const TRACK_ARTIST = 'press play'
+const TRACK_URL = '/track.mp3'
+const TRACK_TITLE = 'Chill deep house'
+const TRACK_ARTIST = 'low and steady'
 const easeOut = [0.16, 1, 0.3, 1] as const
 
 export function MusicPlayer() {

@@ -9,7 +9,6 @@ import { MusicPlayer } from './components/MusicPlayer'
 import { IntroOverlay } from './components/IntroOverlay'
 import { SmoothScroll } from './components/animations/SmoothScroll'
 import { ScrollProgress } from './components/animations/ScrollProgress'
-import { CustomCursor } from './components/animations/CustomCursor'
 
 const marqueeItems = [
   'Ascend, NextLeap fellowship MVP',
@@ -18,7 +17,7 @@ const marqueeItems = [
   'Prototype before PRD',
   'Read vendor contracts',
   'Gurgaon, IST',
-  'Open to Founder Office',
+  "Open to Founder's Office",
   'Available for senior PM roles',
 ]
 
@@ -28,7 +27,6 @@ function App() {
       <IntroOverlay />
       <SmoothScroll />
       <ScrollProgress />
-      <CustomCursor />
       <Hero />
       <Marquee items={marqueeItems} />
       <About />

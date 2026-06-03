@@ -19,7 +19,7 @@ const beliefs = [
     body: 'Get the nouns wrong and every screen lies. The data model is the product. Change a noun and you change the product.',
   },
   {
-    head: 'Ship to enterprise. Pilot in public.',
+    head: 'Two pilots beat two thousand signups.',
     body: 'Two enterprise pilots tell you more than two thousand beta users. The constraint sharpens the product.',
   },
 ]
@@ -63,8 +63,8 @@ export function OriginStory() {
           className="mt-10 sm:mt-14 max-w-2xl mx-auto text-sm sm:text-base md:text-lg leading-relaxed text-center text-primary/70"
         >
           Same instincts. Different verb on the title. The PMs I trust most
-          still know how the thing is built. Product judgment costs nothing if
-          the maker doesn't do the work behind it.
+          still know how the thing is built. Opinions are cheap. Judgment comes
+          from having done the work.
         </motion.p>
 
         <div className="mt-16 sm:mt-20 md:mt-24 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">

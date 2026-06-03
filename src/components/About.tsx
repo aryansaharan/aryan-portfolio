@@ -4,7 +4,7 @@ import { WordsPullUpMultiStyle } from './animations/WordsPullUpMultiStyle'
 import { AnimatedLetter } from './animations/AnimatedLetter'
 
 const bodyText =
-  'Engineer by training, PM at Lyearn now. I lean engineering when most PMs would defer to it: Colab notebooks before mockups, domain models before screens, vendor contracts I read before I sign. Open to Founder Office work.'
+  'Engineer by training, PM at Lyearn now. I lean engineering when most PMs would defer to it: Colab notebooks before mockups, domain models before screens, vendor contracts I read before I sign. The title changed. The instinct to build the thing did not.'
 
 export function About() {
   const ref = useRef<HTMLParagraphElement>(null)
@@ -32,7 +32,7 @@ export function About() {
                 className: 'italic font-serif font-normal',
               },
               {
-                text: 'I ship AI-native product end-to-end: vendor strategy, API integration, voice agents, and AI persona design.',
+                text: 'I ship AI-native product end to end: vendor strategy, API integration, voice agents, and AI persona design.',
                 className: 'font-normal',
               },
             ]}

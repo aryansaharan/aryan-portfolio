@@ -15,7 +15,7 @@ const beats = [
   },
   {
     label: 'Flow',
-    text: '6-question assess, then 3 to 5 personalized course picks with fit notes, then side-by-side compare with peer reviews.',
+    text: '6-question assessment, then 3 to 5 personalized course picks with fit notes, then side-by-side compare with peer reviews.',
   },
   {
     label: 'Corpus',
@@ -67,8 +67,10 @@ export function Ascend() {
           transition={{ duration: 0.7, delay: 0.2, ease: easeOut }}
           className="text-center text-primary/80 text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-12 sm:mb-16"
         >
-          A course-recommendation MVP. Built in 4 days as a NextLeap fellowship submission.
-          Narrows hundreds of options down to 3 to 5 personalized picks with peer reviews.
+          A course-recommendation MVP. Most early-career people freeze at the same step:
+          too many courses, no idea which one is theirs. Ascend asks six questions and
+          narrows hundreds of options down to three to five picks, each with a reason and
+          peer reviews.
         </motion.p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 mb-12 sm:mb-16">
