@@ -22,8 +22,8 @@ import { motion } from 'framer-motion'
 // ──────────────────────────────────────────────────────────────────────────
 
 const TRACK_URL = '/track.mp3'
-const TRACK_TITLE = 'Vocal deep house'
-const TRACK_ARTIST = 'on the house'
+const TRACK_TITLE = 'Chill deep house'
+const TRACK_ARTIST = 'low and steady'
 const easeOut = [0.16, 1, 0.3, 1] as const
 
 export function MusicPlayer() {
