@@ -11,11 +11,10 @@ import { ScrollProgress } from './components/animations/ScrollProgress'
 import { CustomCursor } from './components/animations/CustomCursor'
 
 const marqueeItems = [
-  'Still ships code on weekends',
-  'Reads the contract, not the summary',
-  'Prototypes it before it has a name',
-  'Picks the vendor by stress-testing the API',
-  'Engineer past, PM present',
+  'Engineer turned PM',
+  'AI-native product',
+  'Prototype before PRD',
+  'Reads the contract',
   'Gurgaon, IST',
 ]
 

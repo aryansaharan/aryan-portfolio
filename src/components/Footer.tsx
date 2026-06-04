@@ -31,9 +31,8 @@ export function Footer() {
           className="mt-10 sm:mt-14 flex flex-col items-center gap-6"
         >
           <p className="text-primary/60 text-sm sm:text-base text-center max-w-xl leading-relaxed">
-            If you are building something AI-native, I am the cheapest way to
-            find out if the idea holds. I prototype it before I write the spec.
-            Founder's Office, India or the UK.
+            If you are building something AI-native, I would like to hear about
+            it. Founder's Office, India or the UK.
           </p>
 
           <MagneticButton strength={0.25}>
