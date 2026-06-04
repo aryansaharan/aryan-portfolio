@@ -35,7 +35,7 @@ export function IntroOverlay() {
               transition={{ duration: 0.7, delay: 0.15, ease: easeOut }}
               className="text-primary font-semibold tracking-[-0.02em] text-3xl sm:text-4xl md:text-5xl"
             >
-              Still climbing.
+              I'm better in person
             </motion.div>
             <motion.div
               initial={{ y: 14, opacity: 0, filter: 'blur(8px)' }}
@@ -43,7 +43,7 @@ export function IntroOverlay() {
               transition={{ duration: 0.7, delay: 0.55, ease: easeOut }}
               className="font-serif italic text-primary/90 text-3xl sm:text-4xl md:text-5xl"
             >
-              Already glad you are here.
+              than this sentence suggests.
             </motion.div>
           </div>
         </motion.div>
