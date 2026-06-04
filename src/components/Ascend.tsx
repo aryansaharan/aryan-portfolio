@@ -11,7 +11,7 @@ const beats = [
   },
   {
     label: 'Stack',
-    text: 'Next.js 16 (App Router), React 19, TypeScript, Tailwind 4, Framer Motion.',
+    text: 'Next.js (App Router), React, TypeScript, Tailwind, Framer Motion.',
   },
   {
     label: 'Flow',

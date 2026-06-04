@@ -32,7 +32,7 @@ export function About() {
                 className: 'italic font-serif font-normal',
               },
               {
-                text: 'I ship AI-native product end to end: vendor strategy, API integration, voice agents, and AI persona design.',
+                text: 'I build the thing first and write about it second. Right now that thing talks back in your own language.',
                 className: 'font-normal',
               },
             ]}

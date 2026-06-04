@@ -62,9 +62,10 @@ export function OriginStory() {
           transition={{ duration: 0.8, ease: easeOut, delay: 0.3 }}
           className="mt-10 sm:mt-14 max-w-2xl mx-auto text-sm sm:text-base md:text-lg leading-relaxed text-center text-primary/70"
         >
-          Same instincts. Different verb on the title. The PMs I trust most
-          still know how the thing is built. Opinions are cheap. Judgment comes
-          from having done the work.
+          Same instincts. Different verb on the title. The PMs I trust most can
+          still open the codebase and find the lie. I learned to trust the
+          prototype over the pitch the hard way, by shipping a few pitches that
+          did not survive contact.
         </motion.p>
 
         <div className="mt-16 sm:mt-20 md:mt-24 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">

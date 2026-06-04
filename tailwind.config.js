@@ -7,7 +7,7 @@ export default {
         primary: '#DEDBC8',
       },
       fontFamily: {
-        serif: ['"Instrument Serif"', 'serif'],
+        serif: ['"Fraunces"', 'serif'],
       },
     },
   },

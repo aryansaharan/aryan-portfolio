@@ -18,7 +18,7 @@ const items = [
   },
   {
     label: 'Listening to',
-    lines: ['Lo-fi house while shipping', 'Late-night deep work mixes'],
+    lines: ['Ambient house, one track on loop for hours', 'The same set until the thing ships'],
   },
 ]
 

@@ -31,9 +31,9 @@ export function Footer() {
           className="mt-10 sm:mt-14 flex flex-col items-center gap-6"
         >
           <p className="text-primary/60 text-sm sm:text-base text-center max-w-xl leading-relaxed">
-            Open to Founder's Office and senior PM roles in India and the UK. If
-            you're building something AI-native and want a PM who'll prototype it
-            before they spec it, let's talk.
+            If you are building something AI-native and want a PM who will
+            prototype it before he specs it, I am the cheapest way to find out
+            if the idea holds. Founder's Office or senior PM, India or the UK.
           </p>
 
           <MagneticButton strength={0.25}>
@@ -74,7 +74,7 @@ export function Footer() {
             href="/Aryan_Saharan.pdf"
             className="inline-block py-2 -my-2 hover:text-primary transition-colors"
           >
-            Resume PDF
+            Resume
           </a>
           <div className="col-span-2 sm:col-span-1 text-primary/55">Gurgaon · IST</div>
         </motion.div>
