@@ -6,7 +6,6 @@ import { Currently } from './components/Currently'
 import { Footer } from './components/Footer'
 import { Marquee } from './components/Marquee'
 import { MusicPlayer } from './components/MusicPlayer'
-import { IntroOverlay } from './components/IntroOverlay'
 import { SmoothScroll } from './components/animations/SmoothScroll'
 import { ScrollProgress } from './components/animations/ScrollProgress'
 import { CustomCursor } from './components/animations/CustomCursor'
@@ -23,7 +22,6 @@ const marqueeItems = [
 function App() {
   return (
     <>
-      <IntroOverlay />
       <SmoothScroll />
       <ScrollProgress />
       <CustomCursor />
