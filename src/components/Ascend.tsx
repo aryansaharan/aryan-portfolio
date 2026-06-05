@@ -27,7 +27,7 @@ const beats = [
   },
   {
     label: 'Polish',
-    text: 'Aurora atmospheric backdrop, Instrument Serif italic accents, OG image, sitemap, error and not-found boundaries.',
+    text: 'Aurora atmospheric backdrop, serif-italic accents, OG image, sitemap, error and not-found boundaries.',
   },
 ]
 
@@ -69,8 +69,8 @@ export function Ascend() {
         >
           A course-recommendation MVP. Most early-career people freeze at the same step:
           too many courses, no idea which one is theirs. Ascend asks six questions and
-          narrows hundreds of options down to three to five picks, each with a reason and
-          peer reviews.
+          narrows the field down to three to five picks, each with a reason and peer
+          reviews.
         </motion.p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 mb-12 sm:mb-16">
