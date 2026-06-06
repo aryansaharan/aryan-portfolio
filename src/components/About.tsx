@@ -52,14 +52,10 @@ export function About() {
         <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl max-w-3xl mx-auto leading-[0.95] sm:leading-[0.9]">
           <WordsPullUpMultiStyle
             segments={[
-              { text: 'I am Aryan Saharan,', className: 'font-normal' },
+              { text: 'I am Aryan Saharan.', className: 'font-normal' },
               {
-                text: 'a PM who builds.',
+                text: 'Trying to build a little better than I did yesterday.',
                 className: 'italic font-serif font-normal',
-              },
-              {
-                text: 'I build the thing first and write about it second.',
-                className: 'font-normal',
               },
             ]}
           />
