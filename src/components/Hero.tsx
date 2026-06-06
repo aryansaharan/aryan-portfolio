@@ -112,7 +112,7 @@ export function Hero() {
                 className="text-primary/80 text-sm sm:text-base md:text-lg"
                 style={{ lineHeight: 1.45 }}
               >
-                PM by title. Engineer by reflex. Builder by instinct.
+                PM by title. Engineer by reflex.
               </motion.p>
 
               <motion.div

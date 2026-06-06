@@ -12,9 +12,9 @@ import { CustomCursor } from './components/animations/CustomCursor'
 
 const marqueeItems = [
   'Engineer turned PM',
-  'AI-native product',
+  'Ships voice agents',
   'Prototype before PRD',
-  'Reads the contract',
+  'Reads the vendor contract',
   'Gurgaon, IST',
 ]
 

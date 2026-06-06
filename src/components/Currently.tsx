@@ -6,7 +6,7 @@ const easeOut = [0.16, 1, 0.3, 1] as const
 const items = [
   {
     label: 'Building',
-    lines: ['Shipping AI Roleplay at Lyearn', 'Voice coach personas, end to end'],
+    lines: ['Shipping AI Roleplay at Lyearn', 'Voice personas, live for sales teams'],
   },
   {
     label: 'Reading',
@@ -14,11 +14,11 @@ const items = [
   },
   {
     label: 'Brewing',
-    lines: ['An essay: prototype before PRD', "Founder's Office applications"],
+    lines: ['An essay on where AI roleplay breaks', 'A weekend build I keep not finishing'],
   },
   {
     label: 'Listening to',
-    lines: ['Fred again.., on repeat', 'the way he builds whole songs out of voice notes'],
+    lines: ['Fred again.., on repeat'],
   },
 ]
 
