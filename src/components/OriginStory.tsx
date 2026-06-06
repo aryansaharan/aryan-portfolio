@@ -24,7 +24,7 @@ export function OriginStory() {
                 className: 'font-normal text-primary',
               },
               {
-                text: 'Now I build the thing.',
+                text: 'Now I build the product.',
                 className: 'font-normal italic font-serif text-primary',
               },
             ]}

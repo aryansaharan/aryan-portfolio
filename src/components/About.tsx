@@ -4,7 +4,7 @@ import { WordsPullUpMultiStyle } from './animations/WordsPullUpMultiStyle'
 import { AnimatedLetter } from './animations/AnimatedLetter'
 
 const bodyText =
-  'Engineer by training, PM at Lyearn now. I reach for Colab notebooks before mockups and domain models before screens, and I read the vendor contracts myself.'
+  'Engineer by training, PM at Lyearn now. I reach for Colab notebooks before mockups and domain models before screens, and I read the vendor contracts myself. The title changed. The instinct to build the thing did not.'
 
 export function About() {
   const ref = useRef<HTMLParagraphElement>(null)
