@@ -54,7 +54,7 @@ export function About() {
             segments={[
               { text: 'I am Aryan Saharan.', className: 'font-normal' },
               {
-                text: 'Trying to build a little better than I did yesterday.',
+                text: 'Trying to be a little better than I did yesterday.',
                 className: 'italic font-serif font-normal',
               },
             ]}
