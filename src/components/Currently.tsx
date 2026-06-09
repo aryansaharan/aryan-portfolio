@@ -6,7 +6,7 @@ const easeOut = [0.16, 1, 0.3, 1] as const
 const items = [
   {
     label: 'Building',
-    lines: ['Shipping AI Roleplay at Lyearn', 'Voice coach personas, end to end'],
+    lines: ['Shipping AI Roleplay at Lyearn', 'Voice roleplay personas, end to end'],
   },
   {
     label: 'Reading',
