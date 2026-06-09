@@ -31,6 +31,21 @@ const beats = [
   },
 ]
 
+const alsoBuilt = [
+  {
+    name: 'Shram',
+    blurb: 'Landing page redesign for an AI follow-up agent.',
+    domain: 'shram-ai.netlify.app',
+    href: 'https://shram-ai.netlify.app',
+  },
+  {
+    name: 'Braino',
+    blurb: 'Landing page redesign for an AI investing coach.',
+    domain: 'braino-landing.vercel.app',
+    href: 'https://braino-landing.vercel.app',
+  },
+]
+
 export function Ascend() {
   return (
     <section
@@ -112,6 +127,50 @@ export function Ascend() {
             </span>
           </a>
         </motion.div>
+
+        {/* Also built: build-to-apply landing redesigns. Cards match the beat
+            grid above; an aurora-hint glow fades in on hover. */}
+        <div className="mt-20 sm:mt-24 md:mt-28">
+          <div className="text-primary text-[11px] sm:text-[13px] uppercase tracking-[0.28em] font-medium text-center mb-6 sm:mb-8">
+            Also built
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 max-w-4xl mx-auto">
+            {alsoBuilt.map((p, i) => (
+              <motion.a
+                key={p.name}
+                href={p.href}
+                target="_blank"
+                rel="noreferrer"
+                initial={{ y: 30, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.9, delay: 0.1 + i * 0.1, ease: easeOut }}
+                className="group relative overflow-hidden bg-[#101010] border border-primary/10 rounded-2xl p-6 sm:p-7 hover:border-primary/30 transition-colors"
+              >
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  style={{
+                    background:
+                      'radial-gradient(70% 90% at 25% 15%, rgba(245, 180, 90, 0.12) 0%, transparent 60%), radial-gradient(65% 85% at 85% 90%, rgba(170, 140, 220, 0.12) 0%, transparent 60%)',
+                  }}
+                />
+                <div className="relative flex items-center justify-between gap-3">
+                  <span className="text-xl sm:text-2xl font-semibold tracking-[-0.02em] text-primary/90 group-hover:text-primary transition-colors">
+                    {p.name}
+                  </span>
+                  <ArrowUpRight className="w-5 h-5 shrink-0 text-primary/40 transition-all duration-300 group-hover:text-primary group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                </div>
+                <div className="relative mt-2 text-sm sm:text-base text-primary/70 leading-snug">
+                  {p.blurb}
+                </div>
+                <div className="relative mt-3 text-[11px] sm:text-xs text-primary/40 tracking-[0.08em]">
+                  {p.domain}
+                </div>
+              </motion.a>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   )
