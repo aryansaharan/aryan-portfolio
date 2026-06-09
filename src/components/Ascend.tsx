@@ -23,7 +23,7 @@ const beats = [
   },
   {
     label: 'Recommender',
-    text: 'Deterministic multi-signal scorer over the corpus. Track match, level fit, time fit, goal alignment. Designed to swap for an LLM call.',
+    text: 'An LLM ranks the corpus against your answers: experience, time, goals, even a free-text role. Each pick shows the signals behind the match, and a deterministic scorer takes over if the model is unavailable.',
   },
   {
     label: 'Polish',
