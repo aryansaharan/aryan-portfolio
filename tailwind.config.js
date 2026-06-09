@@ -4,7 +4,9 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#DEDBC8',
+        // Channels live in src/index.css :root so the palette has one source of truth.
+        primary: 'oklch(var(--ink-lch) / <alpha-value>)',
+        surface: 'oklch(var(--surface-lch) / <alpha-value>)',
       },
       fontFamily: {
         serif: ['"Fraunces"', 'serif'],

@@ -1,16 +1,12 @@
 import { motion } from 'framer-motion'
 import { WordsPullUpMultiStyle } from './animations/WordsPullUpMultiStyle'
-import { CursorSpotlight } from './animations/CursorSpotlight'
-import { ParticleField } from './animations/ParticleField'
 
 const easeOut = [0.16, 1, 0.3, 1] as const
 
 export function OriginStory() {
   return (
-    <CursorSpotlight radius={620} intensity={0.10} className="bg-black">
-    <section className="relative py-20 sm:py-28 md:py-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section className="relative bg-black py-20 sm:py-28 md:py-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <div className="bloom-indigo" />
-      <ParticleField count={42} intensity={0.6} />
       <div className="relative max-w-5xl mx-auto">
         <div className="text-primary text-[11px] sm:text-[13px] uppercase tracking-[0.28em] font-medium text-center mb-6 sm:mb-8">
           Origin
@@ -44,6 +40,5 @@ export function OriginStory() {
         </motion.p>
       </div>
     </section>
-    </CursorSpotlight>
   )
 }

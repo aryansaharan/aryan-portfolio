@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 import { motion } from 'framer-motion'
 
 type Props = {
@@ -37,13 +37,15 @@ export function WordsPullUp({
       transition={{ staggerChildren: stagger, delayChildren: delay }}
       onAnimationComplete={() => setRevealed(true)}
     >
+      {/* Real space text nodes between word spans keep textContent intact for
+          copy-paste, find-in-page, and screen readers; the inline container
+          renders them as the visual word gap. */}
       {words.map((word, i) => {
         const isLast = i === words.length - 1
         return (
+          <Fragment key={i}>
           <span
-            key={i}
             className={`inline-block align-bottom ${revealed ? '' : 'overflow-hidden'}`}
-            style={{ marginRight: '0.25em' }}
           >
             <motion.span
               className="inline-block relative"
@@ -72,6 +74,8 @@ export function WordsPullUp({
               )}
             </motion.span>
           </span>
+          {isLast ? null : ' '}
+          </Fragment>
         )
       })}
     </motion.span>

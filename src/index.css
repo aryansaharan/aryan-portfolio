@@ -2,23 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
-/* macrostructure: Marquee Hero + Stat-Led grid
- * paper: black · accent: cream (#E1E0CC / #DEDBC8)
- * display + body: Schibsted Grotesk (editorial grotesk) · accent: Fraunces italic
+/* macrostructure: Marquee Hero + label-led card grid
+ * paper: #000 · ink: cream oklch(90.21% 0.0267 104.59) — single `primary` token
+ * surface: oklch(17.30% 0 0) · display + body: Schibsted Grotesk · accent: Fraunces italic
  */
 
-* {
-  font-family: 'Schibsted Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+:root {
+  /* L C H channels; Tailwind composes alpha via oklch(var(--ink-lch) / <alpha-value>) */
+  --ink-lch: 90.21% 0.0267 104.59;
+  --surface-lch: 17.3% 0 0;
 }
 
 body {
+  font-family: 'Schibsted Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
   font-optical-sizing: auto;
+}
+
+/* Form controls don't inherit font by default */
+button,
+input,
+select,
+textarea {
+  font: inherit;
 }
 
 html,
 body {
   background: #000;
-  color: #E1E0CC;
+  color: oklch(var(--ink-lch));
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
@@ -54,9 +65,19 @@ body {
   background-size: 300px 300px;
 }
 
-html.custom-cursor-active,
-html.custom-cursor-active * {
-  cursor: none !important;
+/* Marquee: CSS-driven so it costs no JS and pauses on hover/focus.
+ * Reduced motion is covered by the global animation kill-switch below.
+ */
+.marquee-track {
+  animation: marquee-scroll 38s linear infinite;
+}
+.marquee:hover .marquee-track,
+.marquee:focus-within .marquee-track {
+  animation-play-state: paused;
+}
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
 .vinyl-disc {

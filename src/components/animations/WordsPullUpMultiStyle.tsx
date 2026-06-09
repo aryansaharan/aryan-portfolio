@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 import { motion } from 'framer-motion'
 
 type Segment = { text: string; className?: string }
@@ -43,9 +43,12 @@ export function WordsPullUpMultiStyle({
       transition={{ staggerChildren: stagger, delayChildren: delay }}
       onAnimationComplete={() => setRevealed(true)}
     >
+      {/* The flex container ignores whitespace-only nodes when rendering, so the
+          real spaces below exist purely for textContent: copy-paste, find-in-page,
+          and screen readers read whole sentences, not one unspaced string. */}
       {flat.map((item, i) => (
+        <Fragment key={i}>
         <span
-          key={i}
           className={`inline-block align-bottom ${revealed ? '' : 'overflow-hidden'}`}
           style={{ marginRight: '0.25em' }}
         >
@@ -56,6 +59,8 @@ export function WordsPullUpMultiStyle({
             {item.word}
           </motion.span>
         </span>
+        {i === flat.length - 1 ? null : ' '}
+        </Fragment>
       ))}
     </motion.span>
   )

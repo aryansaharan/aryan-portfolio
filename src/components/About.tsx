@@ -4,7 +4,7 @@ import { WordsPullUpMultiStyle } from './animations/WordsPullUpMultiStyle'
 import { AnimatedLetter } from './animations/AnimatedLetter'
 
 const bodyText =
-  'Engineer by training, PM at Lyearn now. I model the domain before I draw the screens, and I like the part where it doesn\'t work yet.'
+  'Engineer by training, PM at Lyearn now. I model the domain before I draw the screens, and I like the part where it doesn’t work yet.'
 
 export function About() {
   const ref = useRef<HTMLParagraphElement>(null)
@@ -44,7 +44,7 @@ export function About() {
   return (
     <section className="relative overflow-hidden bg-black py-16 sm:py-20 md:py-24 px-4 sm:px-6 lg:px-8">
       <div className="bloom-amber" />
-      <div className="relative bg-[#101010] max-w-6xl mx-auto rounded-2xl md:rounded-[2rem] py-12 sm:py-16 md:py-20 px-6 sm:px-10 md:px-16 text-center">
+      <div className="relative bg-surface max-w-6xl mx-auto rounded-2xl md:rounded-[2rem] py-12 sm:py-16 md:py-20 px-6 sm:px-10 md:px-16 text-center">
         <div className="text-primary text-[11px] sm:text-[13px] uppercase tracking-[0.28em] font-medium mb-6 sm:mb-8">
           About
         </div>
@@ -63,10 +63,12 @@ export function About() {
 
         <p
           ref={ref}
-          className="mt-10 sm:mt-14 max-w-2xl mx-auto text-sm sm:text-base md:text-lg leading-relaxed"
-          style={{ color: '#DEDBC8' }}
+          className="mt-10 sm:mt-14 max-w-2xl mx-auto text-sm sm:text-base md:text-lg leading-relaxed text-primary"
         >
-          {rendered}
+          {/* Assistive tech reads the plain sentence; the per-letter spans are
+              presentation only. */}
+          <span className="sr-only">{bodyText}</span>
+          <span aria-hidden="true">{rendered}</span>
         </p>
       </div>
     </section>

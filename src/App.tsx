@@ -1,3 +1,4 @@
+import { MotionConfig } from 'framer-motion'
 import { Hero } from './components/Hero'
 import { About } from './components/About'
 import { OriginStory } from './components/OriginStory'
@@ -7,7 +8,6 @@ import { Footer } from './components/Footer'
 import { Marquee } from './components/Marquee'
 import { MusicPlayer } from './components/MusicPlayer'
 import { SmoothScroll } from './components/animations/SmoothScroll'
-import { ScrollProgress } from './components/animations/ScrollProgress'
 import { CustomCursor } from './components/animations/CustomCursor'
 
 const marqueeItems = [
@@ -20,19 +20,20 @@ const marqueeItems = [
 
 function App() {
   return (
-    <>
+    <MotionConfig reducedMotion="user">
       <SmoothScroll />
-      <ScrollProgress />
       <CustomCursor />
-      <Hero />
-      <Marquee items={marqueeItems} />
-      <About />
-      <OriginStory />
-      <Ascend />
-      <Currently />
+      <main>
+        <Hero />
+        <Marquee items={marqueeItems} />
+        <About />
+        <OriginStory />
+        <Ascend />
+        <Currently />
+      </main>
       <Footer />
       <MusicPlayer />
-    </>
+    </MotionConfig>
   )
 }
 

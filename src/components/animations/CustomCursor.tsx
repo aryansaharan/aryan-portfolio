@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
 
-// A custom cursor that follows the pointer with NO lag: the outer element's
+// A cursor ring that follows the pointer with NO lag: the outer element's
 // transform is written straight from the mousemove event (compositor-only, no
 // CSS transition on position, no spring/lerp). Only the ring's hover scale and
-// the visibility fade animate. Falls back to the system cursor on touch devices
-// and when reduced motion is requested.
+// the visibility fade animate. The native cursor stays visible — the ring is a
+// halo, not a replacement — so the I-beam over text and the pointer over links
+// keep working. Disabled on touch devices and when reduced motion is requested.
 export function CustomCursor() {
   const [enabled, setEnabled] = useState(false)
   const [hovering, setHovering] = useState(false)
@@ -18,7 +19,6 @@ export function CustomCursor() {
     if (reduced || !hasMouse) return
 
     setEnabled(true)
-    document.documentElement.classList.add('custom-cursor-active')
 
     const onMove = (e: MouseEvent) => {
       const el = wrap.current
@@ -46,7 +46,6 @@ export function CustomCursor() {
       window.removeEventListener('mouseover', onOver)
       document.removeEventListener('mouseleave', onLeave)
       document.removeEventListener('mouseenter', onEnter)
-      document.documentElement.classList.remove('custom-cursor-active')
     }
   }, [])
 
@@ -59,7 +58,7 @@ export function CustomCursor() {
       className="pointer-events-none fixed left-0 top-0 z-[200]"
       style={{
         opacity: visible ? 1 : 0,
-        transition: 'opacity 200ms ease',
+        transition: 'opacity 200ms cubic-bezier(0.16, 1, 0.3, 1)',
         willChange: 'transform',
       }}
     >
@@ -70,23 +69,9 @@ export function CustomCursor() {
           width: 28,
           height: 28,
           transform: `translate(-50%, -50%) scale(${hovering ? 1.5 : 1})`,
-          backgroundColor: hovering ? 'rgba(225, 224, 204, 0.12)' : 'transparent',
+          backgroundColor: hovering ? 'oklch(var(--ink-lch) / 0.12)' : 'transparent',
           transition:
-            'transform 160ms cubic-bezier(0.22, 1, 0.36, 1), background-color 160ms ease',
-        }}
-      />
-      {/* precise center dot */}
-      <div
-        className="rounded-full bg-primary"
-        style={{
-          width: 4,
-          height: 4,
-          transform: 'translate(-50%, -50%)',
-          position: 'absolute',
-          left: 0,
-          top: 0,
-          opacity: hovering ? 0 : 1,
-          transition: 'opacity 160ms ease',
+            'transform 160ms cubic-bezier(0.16, 1, 0.3, 1), background-color 160ms cubic-bezier(0.16, 1, 0.3, 1)',
         }}
       />
     </div>

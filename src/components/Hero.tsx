@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { WordsPullUp } from './animations/WordsPullUp'
 import { MagneticButton } from './animations/MagneticButton'
@@ -9,11 +9,10 @@ const navItems: { label: string; href: string; external?: boolean }[] = [
   { label: 'LinkedIn', href: 'https://linkedin.com/in/aryansaharan1', external: true },
 ]
 const easeOut = [0.16, 1, 0.3, 1] as const
-const heroVideo =
-  'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_170732_8a9ccda6-5cff-4628-b164-059c500a2b41.mp4'
 
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
+  const reduceMotion = useReducedMotion()
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start start', 'end start'],
@@ -28,13 +27,15 @@ export function Hero() {
     <section ref={sectionRef} className="h-[100svh] p-4 md:p-6">
       <div className="relative h-full w-full overflow-hidden rounded-2xl md:rounded-[2rem] bg-black">
         <motion.video
-          src={heroVideo}
-          autoPlay
+          src="/hero.mp4"
+          poster="/hero-poster.jpg"
+          preload="metadata"
+          autoPlay={!reduceMotion}
           loop
           muted
           playsInline
           className="absolute inset-0 h-full w-full object-cover object-[50%_58%] md:object-[35%_75%]"
-          style={{ y: videoY, scale: videoScale }}
+          style={reduceMotion ? undefined : { y: videoY, scale: videoScale }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.6, ease: easeOut }}
@@ -57,15 +58,7 @@ export function Hero() {
                     href={item.href}
                     target={item.external ? '_blank' : undefined}
                     rel={item.external ? 'noreferrer' : undefined}
-                    className="transition-colors"
-                    style={{ color: 'rgba(225, 224, 204, 0.8)' }}
-                    onMouseEnter={(e) =>
-                      ((e.target as HTMLElement).style.color = '#E1E0CC')
-                    }
-                    onMouseLeave={(e) =>
-                      ((e.target as HTMLElement).style.color =
-                        'rgba(225, 224, 204, 0.8)')
-                    }
+                    className="inline-block px-2 -mx-2 py-3 -my-3 text-primary/80 hover:text-primary focus-visible:text-primary transition-colors"
                   >
                     {item.label}
                   </a>
@@ -81,24 +74,24 @@ export function Hero() {
             riding up over it. The tagline + CTA sit bottom-left on desktop, centered
             above the music player on mobile. */}
         <motion.div
-          style={{ y: contentY, opacity: contentOpacity }}
+          style={reduceMotion ? undefined : { y: contentY, opacity: contentOpacity }}
           className="absolute inset-0 z-10 pointer-events-none"
         >
-          {/* Greeting couplet: centered, anchored below the figure. */}
+          {/* Greeting couplet: centered, anchored below the figure. One h1, two
+              voiced lines: a couplet is one heading, not two levels. */}
           <div className="absolute inset-x-0 top-[60%] flex justify-center px-5 sm:px-8 md:px-12">
             <div className="w-full max-w-[min(92vw,56rem)] text-center">
               <h1
-                className="font-bold leading-[1.16] tracking-[-0.04em]"
-                style={{ color: '#E1E0CC', fontSize: 'clamp(1.55rem, min(4.6vw, 5.8vh), 3.9rem)' }}
+                className="text-primary"
+                style={{ fontSize: 'clamp(2rem, min(5vw, 5.8vh), 3.9rem)' }}
               >
-                <WordsPullUp text="Glad you climbed up." />
+                <span className="block font-bold leading-[1.16] tracking-[-0.04em]">
+                  <WordsPullUp text="Glad you climbed up." />
+                </span>{' '}
+                <span className="block italic font-serif font-normal leading-[1.16] tracking-[-0.02em]">
+                  <WordsPullUp text="View’s worth it." />
+                </span>
               </h1>
-              <h2
-                className="italic font-serif font-normal leading-[1.16] tracking-[-0.02em]"
-                style={{ color: '#E1E0CC', fontSize: 'clamp(1.55rem, min(4.6vw, 5.8vh), 3.9rem)' }}
-              >
-                <WordsPullUp text="View's worth it." />
-              </h2>
             </div>
           </div>
 
@@ -124,14 +117,11 @@ export function Hero() {
                 <MagneticButton strength={0.25}>
                   <a
                     href="#contact"
-                    className="group inline-flex items-center gap-2 hover:gap-3 transition-all bg-primary text-black rounded-full pl-5 pr-1.5 py-1.5 font-bold text-sm sm:text-base"
+                    className="group inline-flex items-center gap-2 bg-primary text-black rounded-full pl-5 pr-1.5 py-1.5 font-bold text-sm sm:text-base"
                   >
                     Get in touch
                     <span className="bg-black rounded-full w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center group-hover:scale-110 transition-transform">
-                      <ArrowRight
-                        className="w-4 h-4 sm:w-5 sm:h-5"
-                        color="#E1E0CC"
-                      />
+                      <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-primary group-hover:translate-x-0.5 transition-transform" />
                     </span>
                   </a>
                 </MagneticButton>

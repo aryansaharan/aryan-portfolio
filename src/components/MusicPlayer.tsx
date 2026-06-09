@@ -77,11 +77,11 @@ export function MusicPlayer() {
       <button
         onClick={toggle}
         aria-label={playing ? 'Pause music' : 'Play music'}
-        className="group flex items-center gap-3 sm:gap-4 rounded-full border border-primary/15 bg-black/80 backdrop-blur pl-1.5 pr-4 sm:pl-2 sm:pr-5 py-1.5 sm:py-2 shadow-[0_10px_40px_-15px_rgba(0,0,0,0.6)] hover:border-primary/30 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+        className="group flex items-center gap-3 sm:gap-4 rounded-full border border-primary/15 bg-black/80 backdrop-blur pl-1.5 pr-4 sm:pl-2 sm:pr-5 py-1.5 sm:py-2 shadow-[0_10px_40px_-15px_rgba(0,0,0,0.6)] hover:border-primary/30 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-black"
       >
         <Vinyl playing={playing} />
         <div className="flex flex-col items-start leading-tight min-w-0 max-w-[180px] sm:max-w-[220px] pr-1">
-          <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-primary/50">
+          <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-primary/60">
             {error
               ? 'Audio unavailable'
               : playing
@@ -91,7 +91,7 @@ export function MusicPlayer() {
           <span className="text-primary text-xs sm:text-sm font-bold truncate w-full text-left">
             {TRACK_TITLE}
           </span>
-          <span className="text-primary/40 text-[9px] sm:text-[10px] italic truncate w-full text-left">
+          <span className="text-primary/60 text-[10px] sm:text-[11px] font-serif italic truncate w-full text-left">
             {TRACK_ARTIST}
           </span>
         </div>

@@ -8,7 +8,8 @@ type Props = {
   strength?: number
 }
 
-const spring = { type: 'spring' as const, stiffness: 180, damping: 14, mass: 0.4 }
+// Critically-ish damped: the pull should settle, not bounce.
+const spring = { type: 'spring' as const, stiffness: 180, damping: 22, mass: 0.4 }
 
 export function MagneticButton({ children, className = '', strength = 0.3 }: Props) {
   const ref = useRef<HTMLDivElement>(null)

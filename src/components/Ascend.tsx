@@ -96,12 +96,12 @@ export function Ascend() {
               whileInView={{ y: 0, opacity: 1 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.9, delay: 0.1 + i * 0.1, ease: easeOut }}
-              className="bg-[#101010] border border-primary/10 rounded-2xl p-6 sm:p-7 hover:border-primary/25 transition-colors"
+              className="bg-surface border border-primary/10 rounded-2xl p-6 sm:p-7 hover:border-primary/30 transition-colors"
             >
               <div className="text-[11px] sm:text-[13px] uppercase tracking-[0.24em] text-primary/70 font-medium mb-3">
                 {b.label}
               </div>
-              <div className="text-base sm:text-lg text-primary/85 leading-snug">
+              <div className="text-base sm:text-lg text-primary/80 leading-snug">
                 {b.text}
               </div>
             </motion.div>
@@ -119,11 +119,11 @@ export function Ascend() {
             href="https://ascendmvp.vercel.app"
             target="_blank"
             rel="noreferrer"
-            className="group inline-flex items-center gap-2 bg-primary text-black rounded-full pl-5 pr-1.5 py-1.5 font-bold text-sm sm:text-base hover:gap-3 transition-all"
+            className="group inline-flex items-center gap-2 bg-primary text-black rounded-full pl-5 pr-1.5 py-1.5 font-bold text-sm sm:text-base"
           >
             See Ascend live
             <span className="bg-black rounded-full w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center group-hover:scale-110 transition-transform">
-              <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" color="#E1E0CC" />
+              <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 text-primary group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
             </span>
           </a>
         </motion.div>
@@ -145,7 +145,7 @@ export function Ascend() {
                 whileInView={{ y: 0, opacity: 1 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.9, delay: 0.1 + i * 0.1, ease: easeOut }}
-                className="group relative overflow-hidden bg-[#101010] border border-primary/10 rounded-2xl p-6 sm:p-7 hover:border-primary/30 transition-colors"
+                className="group relative overflow-hidden bg-surface border border-primary/10 rounded-2xl p-6 sm:p-7 hover:border-primary/30 transition-colors"
               >
                 <div
                   aria-hidden
@@ -159,12 +159,12 @@ export function Ascend() {
                   <span className="text-xl sm:text-2xl font-semibold tracking-[-0.02em] text-primary/90 group-hover:text-primary transition-colors">
                     {p.name}
                   </span>
-                  <ArrowUpRight className="w-5 h-5 shrink-0 text-primary/40 transition-all duration-300 group-hover:text-primary group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                  <ArrowUpRight className="w-5 h-5 shrink-0 text-primary/60 transition-all duration-300 group-hover:text-primary group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                 </div>
                 <div className="relative mt-2 text-sm sm:text-base text-primary/70 leading-snug">
                   {p.blurb}
                 </div>
-                <div className="relative mt-3 text-[11px] sm:text-xs text-primary/40 tracking-[0.08em]">
+                <div className="relative mt-3 text-[11px] sm:text-xs text-primary/60 tracking-[0.08em]">
                   {p.domain}
                 </div>
               </motion.a>
