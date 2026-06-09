@@ -4,7 +4,7 @@ import { WordsPullUpMultiStyle } from './animations/WordsPullUpMultiStyle'
 import { AnimatedLetter } from './animations/AnimatedLetter'
 
 const bodyText =
-  'Engineer by training, PM at Lyearn now. I model the domain before I draw the screens.'
+  'Engineer by training, PM at Lyearn now. I model the domain before I draw the screens, and I like the part where it doesn\'t work yet.'
 
 export function About() {
   const ref = useRef<HTMLParagraphElement>(null)
