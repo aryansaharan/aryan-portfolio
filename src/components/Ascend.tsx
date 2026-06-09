@@ -11,7 +11,7 @@ const beats = [
   },
   {
     label: 'Stack',
-    text: 'Next.js (App Router), React, TypeScript, Tailwind, Framer Motion.',
+    text: 'Next.js 16 (App Router), React, TypeScript, Tailwind, Framer Motion. Server route calls an LLM through an OpenAI-compatible API, provider-swappable by env.',
   },
   {
     label: 'Flow',
@@ -19,7 +19,7 @@ const beats = [
   },
   {
     label: 'Corpus',
-    text: '37 curated courses spanning tech (DevOps, Data, AI/ML, Frontend, Backend, PM, Design, Leadership) and non-tech (Marketing, Growth, Sales, Customer Success).',
+    text: '36 curated courses spanning tech (DevOps, Data, AI/ML, Frontend, Backend, PM, Design, Leadership) and non-tech (Marketing, Growth, Sales, Customer Success).',
   },
   {
     label: 'Recommender',
