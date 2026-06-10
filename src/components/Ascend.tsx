@@ -1,8 +1,7 @@
-import { motion } from 'framer-motion'
+import { useEffect, useRef } from 'react'
+import { motion, useAnimation, useInView } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import { WordsPullUpMultiStyle } from './animations/WordsPullUpMultiStyle'
-
-const easeOut = [0.16, 1, 0.3, 1] as const
 
 const beats = [
   {
@@ -47,6 +46,24 @@ const alsoBuilt = [
 ]
 
 export function Ascend() {
+  // Aurora ignition: the glow blooms once when the headline enters the
+  // viewport (nobody hovers a headline), settles to a quiet presence,
+  // and hover re-kindles it.
+  const headRef = useRef<HTMLDivElement>(null)
+  const inView = useInView(headRef, { once: true, amount: 0.6 })
+  const aurora = useAnimation()
+  const ignited = useRef(false)
+
+  useEffect(() => {
+    if (inView && !ignited.current) {
+      ignited.current = true
+      aurora.start({
+        opacity: [0, 1, 0.35],
+        transition: { duration: 1.8, times: [0, 0.45, 1], ease: 'easeOut' },
+      })
+    }
+  }, [inView, aurora])
+
   return (
     <section
       id="features"
@@ -59,8 +76,23 @@ export function Ascend() {
         </div>
 
         <div className="text-center mb-6 sm:mb-8">
-          <div className="relative inline-block group">
-            <div className="ascend-hover-aurora opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-out" />
+          <div
+            ref={headRef}
+            className="relative inline-block"
+            onMouseEnter={() =>
+              ignited.current &&
+              aurora.start({ opacity: 1, transition: { duration: 0.6 } })
+            }
+            onMouseLeave={() =>
+              ignited.current &&
+              aurora.start({ opacity: 0.35, transition: { duration: 0.8 } })
+            }
+          >
+            <motion.div
+              className="ascend-hover-aurora"
+              initial={{ opacity: 0 }}
+              animate={aurora}
+            />
             <h2 className="relative text-6xl sm:text-7xl md:text-8xl lg:text-[8rem] xl:text-[8.5rem] leading-[0.9] tracking-[-0.03em]">
               <WordsPullUpMultiStyle
                 segments={[
@@ -75,27 +107,17 @@ export function Ascend() {
           </div>
         </div>
 
-        <motion.p
-          initial={{ y: 20, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.7, delay: 0.2, ease: easeOut }}
-          className="text-center text-primary/80 text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-12 sm:mb-16"
-        >
+        <p className="text-center text-primary/80 text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-12 sm:mb-16">
           A course-recommendation MVP. Most early-career people freeze at the same step:
           too many courses, no idea which one is theirs. Ascend asks six questions and
           narrows the field down to three to five picks, each with a reason and peer
           reviews.
-        </motion.p>
+        </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 mb-12 sm:mb-16">
-          {beats.map((b, i) => (
-            <motion.div
+          {beats.map((b) => (
+            <div
               key={b.label}
-              initial={{ y: 30, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.9, delay: 0.1 + i * 0.1, ease: easeOut }}
               className="bg-surface border border-primary/10 rounded-2xl p-6 sm:p-7 hover:border-primary/30 transition-colors"
             >
               <div className="text-[11px] sm:text-[13px] uppercase tracking-[0.24em] text-primary/70 font-medium mb-3">
@@ -104,17 +126,11 @@ export function Ascend() {
               <div className="text-base sm:text-lg text-primary/80 leading-snug">
                 {b.text}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.7, delay: 0.2, ease: easeOut }}
-          className="flex justify-center"
-        >
+        <div className="flex justify-center">
           <a
             href="https://ascendmvp.vercel.app"
             target="_blank"
@@ -126,7 +142,7 @@ export function Ascend() {
               <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 text-primary group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
             </span>
           </a>
-        </motion.div>
+        </div>
 
         {/* Also built: build-to-apply landing redesigns. Cards match the beat
             grid above; an aurora-hint glow fades in on hover. */}
@@ -135,16 +151,12 @@ export function Ascend() {
             Also built
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 max-w-4xl mx-auto">
-            {alsoBuilt.map((p, i) => (
-              <motion.a
+            {alsoBuilt.map((p) => (
+              <a
                 key={p.name}
                 href={p.href}
                 target="_blank"
                 rel="noreferrer"
-                initial={{ y: 30, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.9, delay: 0.1 + i * 0.1, ease: easeOut }}
                 className="group relative overflow-hidden bg-surface border border-primary/10 rounded-2xl p-6 sm:p-7 hover:border-primary/30 transition-colors"
               >
                 <div
@@ -167,7 +179,7 @@ export function Ascend() {
                 <div className="relative mt-3 text-[11px] sm:text-xs text-primary/60 tracking-[0.08em]">
                   {p.domain}
                 </div>
-              </motion.a>
+              </a>
             ))}
           </div>
         </div>

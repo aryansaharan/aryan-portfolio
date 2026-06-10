@@ -151,6 +151,19 @@ body {
     radial-gradient(34rem 28rem at 50% 78%, rgba(120, 200, 200, 0.07) 0%, transparent 65%);
 }
 
+/* The page listens: while a track plays, MusicPlayer writes --bloom-pulse
+ * (0..1, smoothed low-end energy) on :root and every bloom breathes with the
+ * music. Idle and reduced-motion leave the var at 0 — a steady baseline.
+ * opacity + transform only: the blur rasterizes once and composites cheap. */
+.bloom-amber::before,
+.bloom-indigo::before,
+.bloom-teal::before,
+.bloom-warm::before,
+.bloom-aurora::before {
+  opacity: calc(0.88 + var(--bloom-pulse, 0) * 0.5);
+  transform: scale(calc(1 + var(--bloom-pulse, 0) * 0.06));
+}
+
 /* Aurora hint that fades in on hover of the Ascend headline.
  * Matches the Ascend project's signature palette (peach, rose, lilac, sky, pink).
  */

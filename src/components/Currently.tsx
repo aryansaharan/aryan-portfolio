@@ -1,7 +1,3 @@
-import { motion } from 'framer-motion'
-
-const easeOut = [0.16, 1, 0.3, 1] as const
-
 const items = [
   {
     label: 'Building',
@@ -37,13 +33,9 @@ export function Currently() {
         </div>
 
         <ul className="space-y-6 sm:space-y-8">
-          {items.map((item, i) => (
-            <motion.li
+          {items.map((item) => (
+            <li
               key={item.label}
-              initial={{ y: 24, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.7, delay: i * 0.1, ease: easeOut }}
               className="grid grid-cols-12 gap-4 items-start border-b border-primary/5 pb-6 sm:pb-8 last:border-0"
             >
               <div className="col-span-12 sm:col-span-4 text-primary/60 text-sm sm:text-base font-serif italic">
@@ -54,7 +46,7 @@ export function Currently() {
                   <span key={l}>{l}</span>
                 ))}
               </div>
-            </motion.li>
+            </li>
           ))}
         </ul>
 

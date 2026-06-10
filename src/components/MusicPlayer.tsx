@@ -25,8 +25,82 @@ export function MusicPlayer() {
   const [error, setError] = useState(false)
   const track = TRACKS[index]
 
+  // "The page listens": a WebAudio analyser reads the track's low end and
+  // writes a heavily-smoothed 0..1 value to --bloom-pulse on :root; the
+  // gradient blooms across the page breathe with it (see index.css).
+  const audioCtxRef = useRef<AudioContext | null>(null)
+  const analyserRef = useRef<AnalyserNode | null>(null)
+  const rafRef = useRef(0)
+  const levelRef = useRef(0)
+
+  const setPulse = (v: number) => {
+    document.documentElement.style.setProperty('--bloom-pulse', v.toFixed(3))
+  }
+
+  const startPulse = () => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const a = audioRef.current
+    if (!a) return
+    try {
+      if (!audioCtxRef.current) {
+        const Ctx =
+          window.AudioContext ||
+          (window as unknown as { webkitAudioContext: typeof AudioContext })
+            .webkitAudioContext
+        const ctx = new Ctx()
+        const source = ctx.createMediaElementSource(a)
+        const analyser = ctx.createAnalyser()
+        analyser.fftSize = 256
+        source.connect(analyser)
+        analyser.connect(ctx.destination)
+        audioCtxRef.current = ctx
+        analyserRef.current = analyser
+      }
+      void audioCtxRef.current.resume()
+    } catch {
+      return // no analyser: audio still plays through the element
+    }
+    cancelAnimationFrame(rafRef.current)
+    const analyser = analyserRef.current!
+    const bins = new Uint8Array(analyser.frequencyBinCount)
+    const tick = () => {
+      analyser.getByteFrequencyData(bins)
+      let sum = 0
+      for (let i = 1; i <= 10; i++) sum += bins[i]
+      const raw = sum / 10 / 255
+      // Map past the noise floor so the pulse tracks beats, not loudness…
+      const target = Math.min(1, Math.max(0, (raw - 0.45) / 0.45))
+      // …then smooth: fast attack, slow release.
+      const k = target > levelRef.current ? 0.18 : 0.05
+      levelRef.current += (target - levelRef.current) * k
+      setPulse(levelRef.current)
+      rafRef.current = requestAnimationFrame(tick)
+    }
+    rafRef.current = requestAnimationFrame(tick)
+  }
+
+  const stopPulse = () => {
+    cancelAnimationFrame(rafRef.current)
+    const fade = () => {
+      levelRef.current *= 0.88
+      if (levelRef.current < 0.005) {
+        levelRef.current = 0
+        setPulse(0)
+        return
+      }
+      setPulse(levelRef.current)
+      rafRef.current = requestAnimationFrame(fade)
+    }
+    rafRef.current = requestAnimationFrame(fade)
+  }
+
   useEffect(() => {
     setMounted(true)
+    return () => {
+      cancelAnimationFrame(rafRef.current)
+      setPulse(0)
+      void audioCtxRef.current?.close()
+    }
   }, [])
 
   useEffect(() => {
@@ -59,11 +133,13 @@ export function MusicPlayer() {
     if (playing) {
       a.pause()
       setPlaying(false)
+      stopPulse()
     } else {
       try {
         a.volume = 0.55
         await a.play()
         setPlaying(true)
+        startPulse()
       } catch {
         setError(true)
       }

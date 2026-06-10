@@ -1,46 +1,9 @@
-import { Fragment, useRef } from 'react'
-import { useScroll } from 'framer-motion'
 import { WordsPullUpMultiStyle } from './animations/WordsPullUpMultiStyle'
-import { AnimatedLetter } from './animations/AnimatedLetter'
 
 const bodyText =
   'Engineer by training, PM at Lyearn now. I like the part where it doesn’t work yet.'
 
 export function About() {
-  const ref = useRef<HTMLParagraphElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start 0.8', 'end 0.2'],
-  })
-
-  // Render letter-by-letter for the scroll reveal, but keep each WORD in a
-  // nowrap span so the line can only break at spaces (never mid-word).
-  const total = bodyText.length
-  const words = bodyText.split(' ')
-  let charIndex = 0
-  const rendered = words.map((word, wi) => {
-    const letters = word.split('').map((c) => {
-      const i = charIndex++
-      return (
-        <AnimatedLetter
-          key={i}
-          char={c}
-          index={i}
-          total={total}
-          progress={scrollYProgress}
-        />
-      )
-    })
-    const isLast = wi === words.length - 1
-    if (!isLast) charIndex++ // account for the space between words
-    return (
-      <Fragment key={wi}>
-        <span style={{ whiteSpace: 'nowrap' }}>{letters}</span>
-        {isLast ? null : ' '}
-      </Fragment>
-    )
-  })
-
   return (
     <section className="relative overflow-hidden bg-black py-16 sm:py-20 md:py-24 px-4 sm:px-6 lg:px-8">
       <div className="bloom-amber" />
@@ -61,14 +24,9 @@ export function About() {
           />
         </h2>
 
-        <p
-          ref={ref}
-          className="mt-10 sm:mt-14 max-w-2xl mx-auto text-sm sm:text-base md:text-lg leading-relaxed text-primary"
-        >
-          {/* Assistive tech reads the plain sentence; the per-letter spans are
-              presentation only. */}
-          <span className="sr-only">{bodyText}</span>
-          <span aria-hidden="true">{rendered}</span>
+        {/* Body text is still: reading is not a cinematic experience. */}
+        <p className="mt-10 sm:mt-14 max-w-2xl mx-auto text-sm sm:text-base md:text-lg leading-relaxed text-primary">
+          {bodyText}
         </p>
       </div>
     </section>
