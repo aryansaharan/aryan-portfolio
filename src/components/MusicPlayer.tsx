@@ -9,7 +9,7 @@ import { SkipForward } from 'lucide-react'
 // ──────────────────────────────────────────────────────────────────────────
 
 const TRACKS = [
-  { url: '/tenDays.mp3', title: 'ten days' },
+  { url: '/tenDays.mp3', title: 'ten' },
   { url: '/adoreU.mp3', title: 'adore u' },
   { url: '/glow.mp3', title: 'glow' },
 ]

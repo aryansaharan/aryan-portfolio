@@ -14,7 +14,6 @@ const marqueeItems = [
   'Engineer turned PM',
   'AI-native product',
   'Prototype before PRD',
-  'Reads the contract',
   'Gurgaon · IST',
 ]
 
