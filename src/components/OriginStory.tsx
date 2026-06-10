@@ -27,7 +27,7 @@ export function OriginStory() {
 
         <p className="mt-10 sm:mt-14 max-w-2xl mx-auto text-sm sm:text-base md:text-lg leading-relaxed text-center text-primary/70">
           Same instinct, different title. I trust a prototype over a pitch, mostly
-          because I have shipped a few that did not survive contact with a real user.
+          because I’ve shipped a few that didn’t survive contact with a real user.
         </p>
       </div>
     </section>

@@ -15,7 +15,7 @@ const marqueeItems = [
   'AI-native product',
   'Prototype before PRD',
   'Reads the contract',
-  'Gurgaon, IST',
+  'Gurgaon · IST',
 ]
 
 function App() {
