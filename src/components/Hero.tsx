@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { WordsPullUp } from './animations/WordsPullUp'
@@ -12,7 +12,27 @@ const easeOut = [0.16, 1, 0.3, 1] as const
 
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
+  const videoRef = useRef<HTMLVideoElement>(null)
   const reduceMotion = useReducedMotion()
+
+  // The clouds always drift: the video is ambient content, not decoration,
+  // so it plays regardless of reduce-motion (the parallax stays gated).
+  // If the browser blocks autoplay (battery saver, reduce-motion UAs),
+  // retry once on the first interaction.
+  useEffect(() => {
+    const v = videoRef.current
+    if (!v) return
+    v.play().catch(() => {})
+    const onFirstInput = () => {
+      if (v.paused) v.play().catch(() => {})
+    }
+    window.addEventListener('pointerdown', onFirstInput, { once: true })
+    window.addEventListener('keydown', onFirstInput, { once: true })
+    return () => {
+      window.removeEventListener('pointerdown', onFirstInput)
+      window.removeEventListener('keydown', onFirstInput)
+    }
+  }, [])
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start start', 'end start'],
@@ -27,10 +47,11 @@ export function Hero() {
     <section ref={sectionRef} className="flex min-h-[100svh] p-4 md:p-6">
       <div className="relative flex w-full flex-1 flex-col overflow-hidden rounded-2xl md:rounded-[2rem] bg-black">
         <motion.video
+          ref={videoRef}
           src="/hero.mp4"
           poster="/hero-poster.jpg"
           preload="metadata"
-          autoPlay={!reduceMotion}
+          autoPlay
           loop
           muted
           playsInline
