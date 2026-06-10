@@ -23,7 +23,22 @@ export function MusicPlayer() {
   const [index, setIndex] = useState(0)
   const [mounted, setMounted] = useState(false)
   const [error, setError] = useState(false)
+  // Warm the buffer so play is instant: preload stays "none" for the page
+  // load itself, then flips to auto once the page has settled (or the
+  // moment the pointer reaches the pill, whichever comes first).
+  const [warm, setWarm] = useState(false)
   const track = TRACKS[index]
+
+  useEffect(() => {
+    const t = setTimeout(() => setWarm(true), 2000)
+    return () => clearTimeout(t)
+  }, [])
+
+  useEffect(() => {
+    if (!warm) return
+    const a = audioRef.current
+    if (a && a.paused && a.readyState < 3) a.load()
+  }, [warm])
 
   // "The page listens": a WebAudio analyser reads the track's low end and
   // writes a heavily-smoothed 0..1 value to --bloom-pulse on :root; the
@@ -156,8 +171,9 @@ export function MusicPlayer() {
       animate={mounted ? { y: 0, opacity: 1 } : { y: 60, opacity: 0 }}
       transition={{ duration: 0.8, delay: 1.2, ease: easeOut }}
       className="fixed z-50 bottom-4 right-4 sm:bottom-6 sm:right-6"
+      onPointerEnter={() => setWarm(true)}
     >
-      <audio ref={audioRef} src={track.url} preload="none" />
+      <audio ref={audioRef} src={track.url} preload={warm ? 'auto' : 'none'} />
       {/* Pulse halo: the pill glows with the same --bloom-pulse the page
           blooms breathe to — feedback right where play was pressed, since
           the hero itself carries no blooms. */}
