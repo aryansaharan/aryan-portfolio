@@ -61,7 +61,10 @@ export function Hero() {
           animate={{ opacity: 1 }}
           transition={{ duration: 1.6, ease: easeOut }}
         />
-        <div className="absolute inset-0 noise-overlay opacity-[0.7] mix-blend-overlay pointer-events-none" />
+        {/* Plain alpha grain, no blend mode: mix-blend-overlay forced the
+            browser to re-blend the hero under anything composited moving
+            across it (the cursor ring) — lag + pixel trails on real GPUs. */}
+        <div className="absolute inset-0 noise-overlay opacity-[0.07] pointer-events-none" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60 pointer-events-none" />
 
         {/* Mini-nav: action links only, centered hanging from the top */}
