@@ -158,7 +158,20 @@ export function MusicPlayer() {
       className="fixed z-50 bottom-4 right-4 sm:bottom-6 sm:right-6"
     >
       <audio ref={audioRef} src={track.url} preload="none" />
-      <div className="flex items-center rounded-full border border-primary/15 bg-black/80 backdrop-blur pl-1.5 pr-2 sm:pl-2 sm:pr-2.5 py-1.5 sm:py-2 shadow-[0_10px_40px_-15px_rgba(0,0,0,0.6)] hover:border-primary/30 transition-colors">
+      {/* Pulse halo: the pill glows with the same --bloom-pulse the page
+          blooms breathe to — feedback right where play was pressed, since
+          the hero itself carries no blooms. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -inset-5 rounded-full"
+        style={{
+          background:
+            'radial-gradient(60% 85% at 50% 55%, rgba(245, 180, 90, 0.3) 0%, transparent 70%)',
+          opacity: 'calc(var(--bloom-pulse, 0) * 0.9)',
+          filter: 'blur(16px)',
+        }}
+      />
+      <div className="relative flex items-center rounded-full border border-primary/15 bg-black/80 backdrop-blur pl-1.5 pr-2 sm:pl-2 sm:pr-2.5 py-1.5 sm:py-2 shadow-[0_10px_40px_-15px_rgba(0,0,0,0.6)] hover:border-primary/30 transition-colors">
         <button
           onClick={toggle}
           aria-label={playing ? 'Pause music' : 'Play music'}
@@ -258,13 +271,14 @@ function Vinyl({ playing }: { playing: boolean }) {
         <circle cx="50" cy="50" r="2.5" fill="#000" />
       </svg>
 
-      {/* Tonearm: pivot top-right of the vinyl, swings over the record on play */}
+      {/* Tonearm: pivot top-right of the vinyl. Parked off the record while
+          idle; the needle drops onto the groove on play, like real vinyl. */}
       <div
         aria-hidden
         className="absolute -top-1 -right-2 sm:-top-1.5 sm:-right-2.5 transition-transform duration-700 ease-out pointer-events-none"
         style={{
           transformOrigin: '100% 0%',
-          transform: playing ? 'rotate(-45deg)' : 'rotate(15deg)',
+          transform: playing ? 'rotate(15deg)' : 'rotate(-45deg)',
         }}
       >
         <div className="relative">

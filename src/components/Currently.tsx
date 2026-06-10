@@ -8,10 +8,6 @@ const items = [
     lines: ['The Mom Test, again', 'Latent Space on voice agents'],
   },
   {
-    label: 'Brewing',
-    lines: ['An essay: prototype before PRD', 'Founder’s Office applications'],
-  },
-  {
     label: 'Listening to',
     lines: ['Fred again.., on repeat', 'the way he builds whole songs out of voice notes'],
   },
