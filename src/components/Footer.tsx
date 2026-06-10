@@ -32,8 +32,7 @@ export function Footer() {
         >
           <p className="text-primary/60 text-sm sm:text-base text-center max-w-xl leading-relaxed">
             If you’re building something AI-native, I’d like to hear about it.
-            Open to product, Founder’s Office, or generalist roles in India or
-            the UK.
+            Open to Product, Founder’s Office, or Generalist roles.
           </p>
 
           <MagneticButton strength={0.25}>
