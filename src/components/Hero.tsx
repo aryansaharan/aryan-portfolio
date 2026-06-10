@@ -24,8 +24,8 @@ export function Hero() {
   const contentOpacity = useTransform(scrollYProgress, [0, 0.7, 1], [1, 1, 0.2])
 
   return (
-    <section ref={sectionRef} className="h-[100svh] p-4 md:p-6">
-      <div className="relative h-full w-full overflow-hidden rounded-2xl md:rounded-[2rem] bg-black">
+    <section ref={sectionRef} className="flex min-h-[100svh] p-4 md:p-6">
+      <div className="relative flex w-full flex-1 flex-col overflow-hidden rounded-2xl md:rounded-[2rem] bg-black">
         <motion.video
           src="/hero.mp4"
           poster="/hero-poster.jpg"
@@ -44,7 +44,7 @@ export function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60 pointer-events-none" />
 
         {/* Mini-nav: action links only, centered hanging from the top */}
-        <div className="absolute top-0 inset-x-0 z-20 flex justify-center pointer-events-none">
+        <div className="relative z-20 flex justify-center pointer-events-none">
           <motion.nav
             initial={{ y: -40, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -68,18 +68,20 @@ export function Hero() {
           </motion.nav>
         </div>
 
-        {/* Hero content. The greeting couplet is anchored at a fixed fraction below
-            the seated figure, with viewport-HEIGHT-aware sizing (min(vw,vh)) so it
-            shrinks on short laptop viewports and stays clear of the figure instead of
-            riding up over it. The tagline + CTA sit bottom-left on desktop, centered
-            above the music player on mobile. */}
+        {/* Hero content, in normal flow so nothing can overlap under browser zoom
+            or odd aspect ratios: a top spacer floats the couplet to roughly 60%
+            of the frame, and the tagline + CTA row sits at the bottom. If zoomed
+            text needs more room, the frame grows (section is min-h, not h) and
+            everything pushes instead of colliding. */}
         <motion.div
           style={reduceMotion ? undefined : { y: contentY, opacity: contentOpacity }}
-          className="absolute inset-0 z-10 pointer-events-none"
+          className="relative z-10 flex flex-1 flex-col pointer-events-none px-5 sm:px-8 md:px-12 pb-24 sm:pb-10 md:pb-12"
         >
-          {/* Greeting couplet: centered, anchored below the figure. One h1, two
+          <div aria-hidden className="grow-[7]" />
+
+          {/* Greeting couplet: centered, floated below the figure. One h1, two
               voiced lines: a couplet is one heading, not two levels. */}
-          <div className="absolute inset-x-0 top-[60%] flex justify-center px-5 sm:px-8 md:px-12">
+          <div className="flex justify-center">
             <div className="w-full max-w-[min(92vw,56rem)] text-center">
               <h1
                 className="text-primary"
@@ -95,8 +97,10 @@ export function Hero() {
             </div>
           </div>
 
+          <div aria-hidden className="grow-[5] min-h-6" />
+
           {/* Tagline + CTA: bottom-left on desktop, centered above the player on mobile. */}
-          <div className="absolute inset-x-5 sm:inset-x-8 md:inset-x-12 bottom-24 sm:bottom-10 md:bottom-12 flex justify-center sm:justify-start">
+          <div className="flex justify-center sm:justify-start">
             <div className="flex flex-col items-center sm:items-start max-w-[20rem] text-center sm:text-left">
               <motion.p
                 initial={{ y: 20, opacity: 0 }}
