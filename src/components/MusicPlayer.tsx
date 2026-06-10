@@ -185,6 +185,7 @@ export function MusicPlayer() {
             'radial-gradient(60% 85% at 50% 55%, rgba(245, 180, 90, 0.3) 0%, transparent 70%)',
           opacity: 'calc(var(--bloom-pulse, 0) * 0.9)',
           filter: 'blur(16px)',
+          transform: 'translateZ(0)',
         }}
       />
       <div className="relative flex items-center rounded-full border border-primary/15 bg-black/80 backdrop-blur pl-1.5 pr-2 sm:pl-2 sm:pr-2.5 py-1.5 sm:py-2 shadow-[0_10px_40px_-15px_rgba(0,0,0,0.6)] hover:border-primary/30 transition-colors">

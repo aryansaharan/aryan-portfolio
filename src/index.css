@@ -115,6 +115,9 @@ body {
   inset: 0;
   pointer-events: none;
   filter: blur(50px);
+  /* Own compositor layer: without this, elements moving over the blur
+     (custom cursor) force patchy repaints that can smear on real GPUs. */
+  transform: translateZ(0);
 }
 .bloom-amber::before {
   background:
@@ -145,6 +148,7 @@ body {
   inset: 0;
   pointer-events: none;
   filter: blur(50px);
+  transform: translateZ(0);
   background:
     radial-gradient(40rem 32rem at 22% 25%, rgba(245, 180, 90, 0.09) 0%, transparent 65%),
     radial-gradient(38rem 30rem at 78% 35%, rgba(170, 140, 220, 0.08) 0%, transparent 65%),
@@ -169,7 +173,7 @@ body {
   pointer-events: none;
   filter: blur(50px);
   opacity: var(--bloom-pulse, 0);
-  transform: scale(calc(1 + var(--bloom-pulse, 0) * 0.05));
+  transform: scale(calc(1 + var(--bloom-pulse, 0) * 0.05)) translateZ(0);
 }
 .bloom-amber::after {
   background:
@@ -206,6 +210,7 @@ body {
   inset: -30% -20%;
   pointer-events: none;
   filter: blur(44px) saturate(1.3);
+  transform: translateZ(0);
   background:
     radial-gradient(50% 70% at 15% 25%, rgba(255, 197, 122, 0.65) 0%, transparent 62%),
     radial-gradient(45% 65% at 82% 30%, rgba(253, 148, 165, 0.58) 0%, transparent 60%),
