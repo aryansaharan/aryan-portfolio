@@ -1,36 +1,29 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
+import { SkipForward } from 'lucide-react'
 
 // ──────────────────────────────────────────────────────────────────────────
-// TRACK SOURCE: pick one path.
-//
-//  A. Self-hosted MP3 (best): drop a file into /public/track.mp3
-//     and set TRACK_URL = '/track.mp3'.
-//     Then change TRACK_TITLE + TRACK_ARTIST to match.
-//
-//  B. Any direct MP3/OGG/WAV URL on the web.
-//
-//  C. To replace this whole custom UI with an Apple Music embed instead:
-//     swap the JSX below with an <iframe> pointing at
-//     https://embed.music.apple.com/<country>/album/<id>?theme=dark
-//     (loses the vinyl aesthetic, but plays full Apple Music tracks to
-//     subscribers: guests still get 30s previews).
-//
-//  D. For Apple MusicKit JS with full custom UI control:
-//     needs an Apple Developer account + JWT dev token + MusicKit.configure().
-//     Out of scope for v1; happy to wire if you commit to the dev account.
+// TRACKS: self-hosted MP3s in /public. The player advances on "next" and
+// auto-advances when a track ends (wrapping). Audio is preload="none", so
+// nothing downloads until the first press.
 // ──────────────────────────────────────────────────────────────────────────
 
-const TRACK_URL = '/track.mp3'
-const TRACK_TITLE = 'Chill deep house'
-const TRACK_ARTIST = 'low and steady'
+const TRACKS = [
+  { url: '/tenDays.mp3', title: 'ten days' },
+  { url: '/adoreU.mp3', title: 'adore u' },
+  { url: '/glow.mp3', title: 'glow' },
+]
+const TRACK_ARTIST = 'Fred again..'
+const COVER_URL = '/ten-cover.jpg'
 const easeOut = [0.16, 1, 0.3, 1] as const
 
 export function MusicPlayer() {
   const audioRef = useRef<HTMLAudioElement>(null)
   const [playing, setPlaying] = useState(false)
+  const [index, setIndex] = useState(0)
   const [mounted, setMounted] = useState(false)
   const [error, setError] = useState(false)
+  const track = TRACKS[index]
 
   useEffect(() => {
     setMounted(true)
@@ -39,7 +32,8 @@ export function MusicPlayer() {
   useEffect(() => {
     const a = audioRef.current
     if (!a) return
-    const onEnded = () => setPlaying(false)
+    // Track ended: roll to the next one; the index effect below keeps it playing.
+    const onEnded = () => setIndex((i) => (i + 1) % TRACKS.length)
     const onError = () => setError(true)
     a.addEventListener('ended', onEnded)
     a.addEventListener('error', onError)
@@ -48,6 +42,16 @@ export function MusicPlayer() {
       a.removeEventListener('error', onError)
     }
   }, [])
+
+  // When the track changes mid-play (next button or auto-advance), keep spinning.
+  useEffect(() => {
+    const a = audioRef.current
+    if (!a || !playing) return
+    setError(false)
+    a.volume = 0.55
+    a.play().catch(() => setError(true))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [index])
 
   const toggle = async () => {
     const a = audioRef.current
@@ -66,6 +70,10 @@ export function MusicPlayer() {
     }
   }
 
+  const next = () => {
+    setIndex((i) => (i + 1) % TRACKS.length)
+  }
+
   return (
     <motion.div
       initial={{ y: 60, opacity: 0 }}
@@ -73,29 +81,38 @@ export function MusicPlayer() {
       transition={{ duration: 0.8, delay: 1.2, ease: easeOut }}
       className="fixed z-50 bottom-4 right-4 sm:bottom-6 sm:right-6"
     >
-      <audio ref={audioRef} src={TRACK_URL} loop preload="none" />
-      <button
-        onClick={toggle}
-        aria-label={playing ? 'Pause music' : 'Play music'}
-        className="group flex items-center gap-3 sm:gap-4 rounded-full border border-primary/15 bg-black/80 backdrop-blur pl-1.5 pr-4 sm:pl-2 sm:pr-5 py-1.5 sm:py-2 shadow-[0_10px_40px_-15px_rgba(0,0,0,0.6)] hover:border-primary/30 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-      >
-        <Vinyl playing={playing} />
-        <div className="flex flex-col items-start leading-tight min-w-0 max-w-[180px] sm:max-w-[220px] pr-1">
-          <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-primary/60">
-            {error
-              ? 'Audio unavailable'
-              : playing
-                ? 'Now spinning'
-                : 'Press to spin'}
-          </span>
-          <span className="text-primary text-xs sm:text-sm font-bold truncate w-full text-left">
-            {TRACK_TITLE}
-          </span>
-          <span className="text-primary/60 text-[10px] sm:text-[11px] font-serif italic truncate w-full text-left">
-            {TRACK_ARTIST}
-          </span>
-        </div>
-      </button>
+      <audio ref={audioRef} src={track.url} preload="none" />
+      <div className="flex items-center rounded-full border border-primary/15 bg-black/80 backdrop-blur pl-1.5 pr-2 sm:pl-2 sm:pr-2.5 py-1.5 sm:py-2 shadow-[0_10px_40px_-15px_rgba(0,0,0,0.6)] hover:border-primary/30 transition-colors">
+        <button
+          onClick={toggle}
+          aria-label={playing ? 'Pause music' : 'Play music'}
+          className="group flex items-center gap-3 sm:gap-4 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+        >
+          <Vinyl playing={playing} />
+          <div className="flex flex-col items-start leading-tight min-w-0 max-w-[150px] sm:max-w-[190px]">
+            <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-primary/60">
+              {error
+                ? 'Audio unavailable'
+                : playing
+                  ? 'Now spinning'
+                  : 'Press to spin'}
+            </span>
+            <span className="text-primary text-xs sm:text-sm font-bold truncate w-full text-left">
+              {track.title}
+            </span>
+            <span className="text-primary/60 text-[10px] sm:text-[11px] font-serif italic truncate w-full text-left">
+              {TRACK_ARTIST}
+            </span>
+          </div>
+        </button>
+        <button
+          onClick={next}
+          aria-label="Next track"
+          className="ml-2 sm:ml-3 shrink-0 w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center rounded-full border border-primary/15 text-primary/60 hover:text-primary hover:border-primary/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+        >
+          <SkipForward className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+        </button>
+      </div>
     </motion.div>
   )
 }
@@ -115,10 +132,9 @@ function Vinyl({ playing }: { playing: boolean }) {
             <stop offset="60%" stopColor="#0a0a0a" />
             <stop offset="100%" stopColor="#000" />
           </radialGradient>
-          <radialGradient id="labelGrad" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#E1E0CC" />
-            <stop offset="100%" stopColor="#B8B69E" />
-          </radialGradient>
+          <clipPath id="vinylLabelClip">
+            <circle cx="50" cy="50" r="18" />
+          </clipPath>
         </defs>
         <circle cx="50" cy="50" r="49" fill="url(#vinylGrad)" />
         {/* Grooves */}
@@ -143,19 +159,25 @@ function Vinyl({ playing }: { playing: boolean }) {
           strokeWidth="3"
           strokeLinecap="round"
         />
-        {/* Center label */}
-        <circle cx="50" cy="50" r="18" fill="url(#labelGrad)" />
+        {/* Center label: the album cover, clipped to the label circle */}
+        <image
+          href={COVER_URL}
+          x="32"
+          y="32"
+          width="36"
+          height="36"
+          preserveAspectRatio="xMidYMid slice"
+          clipPath="url(#vinylLabelClip)"
+        />
         <circle
           cx="50"
           cy="50"
           r="18"
           fill="none"
           stroke="#000"
-          strokeOpacity="0.18"
-          strokeWidth="0.4"
+          strokeOpacity="0.25"
+          strokeWidth="0.6"
         />
-        {/* Tiny label tick (orients the spin visually) */}
-        <rect x="49.5" y="34" width="1" height="6" fill="#000" opacity="0.35" />
         {/* Center hole */}
         <circle cx="50" cy="50" r="2.5" fill="#000" />
       </svg>
