@@ -77,7 +77,15 @@ export function Hero() {
           style={reduceMotion ? undefined : { y: contentY, opacity: contentOpacity }}
           className="relative z-10 flex flex-1 flex-col pointer-events-none px-5 sm:px-8 md:px-12 pb-24 sm:pb-10 md:pb-12"
         >
-          <div aria-hidden className="grow-[7]" />
+          {/* Couplet anchor: sized so the h1 top lands at ~60% of the viewport
+              (matching the old absolute pin), but shrinkable, so under browser
+              zoom the spacer gives way before anything can overlap. The 70px
+              offsets the card padding + nav above this column. */}
+          <div
+            aria-hidden
+            className="shrink-[2]"
+            style={{ flexBasis: 'calc(60svh - 70px)' }}
+          />
 
           {/* Greeting couplet: centered, floated below the figure. One h1, two
               voiced lines: a couplet is one heading, not two levels. */}
@@ -97,7 +105,7 @@ export function Hero() {
             </div>
           </div>
 
-          <div aria-hidden className="grow-[5] min-h-6" />
+          <div aria-hidden className="grow min-h-6" />
 
           {/* Tagline + CTA: bottom-left on desktop, centered above the player on mobile. */}
           <div className="flex justify-center sm:justify-start">
