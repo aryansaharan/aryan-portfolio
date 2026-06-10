@@ -4,7 +4,7 @@ import { WordsPullUpMultiStyle } from './animations/WordsPullUpMultiStyle'
 import { AnimatedLetter } from './animations/AnimatedLetter'
 
 const bodyText =
-  'Engineer by training, PM at Lyearn now. I model the domain before I draw the screens, and I like the part where it doesn’t work yet.'
+  'Engineer by training, PM at Lyearn now. I like the part where it doesn’t work yet.'
 
 export function About() {
   const ref = useRef<HTMLParagraphElement>(null)
@@ -54,7 +54,7 @@ export function About() {
             segments={[
               { text: 'I am Aryan Saharan.', className: 'font-normal' },
               {
-                text: 'Trying to be 1% better every day.',
+                text: 'I model the domain before I draw the screens.',
                 className: 'italic font-serif font-normal',
               },
             ]}
