@@ -49,16 +49,17 @@ export function Hero() {
             initial={{ y: -40, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2, ease: easeOut }}
-            className="pointer-events-auto bg-black rounded-b-2xl md:rounded-b-3xl px-5 py-2.5 md:px-7 md:py-3"
+            className="pointer-events-auto bg-black rounded-b-2xl md:rounded-b-3xl px-[1.6em] py-[0.8em]"
+            style={{ fontSize: 'min(1.75vh, max(0.95vw, 3vmin))' }}
           >
-            <ul className="flex items-center gap-4 sm:gap-6 md:gap-8 text-[11px] sm:text-xs md:text-sm">
+            <ul className="flex items-center gap-[1.8em]">
               {navItems.map((item) => (
                 <li key={item.label}>
                   <a
                     href={item.href}
                     target={item.external ? '_blank' : undefined}
                     rel={item.external ? 'noreferrer' : undefined}
-                    className="inline-block px-2 -mx-2 py-3 -my-3 text-primary/80 hover:text-primary focus-visible:text-primary transition-colors"
+                    className="inline-block px-[0.7em] -mx-[0.7em] py-[1em] -my-[1em] text-primary/80 hover:text-primary focus-visible:text-primary transition-colors"
                   >
                     {item.label}
                   </a>
@@ -75,7 +76,7 @@ export function Hero() {
             everything pushes instead of colliding. */}
         <motion.div
           style={reduceMotion ? undefined : { y: contentY, opacity: contentOpacity }}
-          className="relative z-10 flex flex-1 flex-col pointer-events-none px-5 sm:px-8 md:px-12 pb-24 sm:pb-10 md:pb-12"
+          className="relative z-10 flex flex-1 flex-col pointer-events-none px-[5vw] sm:px-[3.8vw] pb-[11.5vh] sm:pb-[6vh]"
         >
           {/* Couplet anchor: sized so the h1 top lands at ~60% of the viewport
               (matching the old absolute pin), but shrinkable, so under browser
@@ -84,16 +85,21 @@ export function Hero() {
           <div
             aria-hidden
             className="shrink-[2]"
-            style={{ flexBasis: 'calc(60svh - 70px)' }}
+            style={{ flexBasis: 'calc(60svh - min(9vh, 70px))' }}
           />
 
           {/* Greeting couplet: centered, floated below the figure. One h1, two
               voiced lines: a couplet is one heading, not two levels. */}
           <div className="flex justify-center">
-            <div className="w-full max-w-[min(92vw,56rem)] text-center">
+            <div className="w-full max-w-[92vw] text-center">
+              {/* All hero type is sized in viewport units (no rem): browser zoom
+                  inflates rem but not vw/vh, and the backdrop video always fills
+                  the physical screen regardless of zoom — so viewport-unit type
+                  is the only way the text stays locked to the image. The hero is
+                  a poster; the rest of the page still zooms normally. */}
               <h1
                 className="text-primary"
-                style={{ fontSize: 'clamp(2rem, min(5vw, 5.8vh), 3.9rem)' }}
+                style={{ fontSize: 'min(5.8vh, max(5vw, 9vmin))' }}
               >
                 <span className="block font-bold leading-[1.16] tracking-[-0.04em]">
                   <WordsPullUp text="Glad you climbed up." />
@@ -109,13 +115,16 @@ export function Hero() {
 
           {/* Tagline + CTA: bottom-left on desktop, centered above the player on mobile. */}
           <div className="flex justify-center sm:justify-start">
-            <div className="flex flex-col items-center sm:items-start max-w-[20rem] text-center sm:text-left">
+            <div className="flex flex-col items-center sm:items-start max-w-[22em] text-center sm:text-left">
               <motion.p
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.5, ease: easeOut }}
-                className="text-primary/80 text-sm sm:text-base md:text-lg"
-                style={{ lineHeight: 1.45 }}
+                className="text-primary/80"
+                style={{
+                  lineHeight: 1.45,
+                  fontSize: 'min(2.25vh, max(1.4vw, 3.6vmin))',
+                }}
               >
                 PM by title. Engineer by reflex. Builder by instinct.
               </motion.p>
@@ -124,16 +133,19 @@ export function Hero() {
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.7, ease: easeOut }}
-                className="mt-4 sm:mt-5 pointer-events-auto"
+                className="mt-[1.2em] pointer-events-auto"
+                style={{ fontSize: 'min(2vh, max(1.1vw, 3.6vmin))' }}
               >
                 <MagneticButton strength={0.25}>
+                  {/* Pill geometry is em-based, so it scales with its own
+                      viewport-unit font and stays proportional to the image. */}
                   <a
                     href="#contact"
-                    className="group inline-flex items-center gap-2 bg-primary text-black rounded-full pl-5 pr-1.5 py-1.5 font-bold text-sm sm:text-base"
+                    className="group inline-flex items-center gap-[0.5em] bg-primary text-black rounded-full pl-[1.25em] pr-[0.4em] py-[0.4em] font-bold"
                   >
                     Get in touch
-                    <span className="bg-black rounded-full w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center group-hover:scale-110 transition-transform">
-                      <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-primary group-hover:translate-x-0.5 transition-transform" />
+                    <span className="bg-black rounded-full w-[2.4em] h-[2.4em] flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <ArrowRight className="w-[1.15em] h-[1.15em] text-primary group-hover:translate-x-0.5 transition-transform" />
                     </span>
                   </a>
                 </MagneticButton>
