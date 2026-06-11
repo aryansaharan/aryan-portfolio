@@ -14,7 +14,7 @@ const marqueeItems = [
   'Engineer turned PM',
   'AI-native product',
   'Prototype before PRD',
-  'Gurgaon · IST',
+  '28°N, 77°E · IST',
 ]
 
 function App() {

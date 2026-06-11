@@ -83,7 +83,7 @@ export function Footer() {
           >
             Resume
           </a>
-          <div className="col-span-2 sm:col-span-1 text-primary/60">Gurgaon · IST</div>
+          <div className="col-span-2 sm:col-span-1 text-primary/60">28°N, 77°E · IST</div>
         </div>
 
         <div className="mt-12 sm:mt-16 pt-6 border-t border-primary/5 text-[10px] sm:text-xs text-primary/60 text-center">
