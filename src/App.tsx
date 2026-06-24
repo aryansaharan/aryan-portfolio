@@ -1,4 +1,5 @@
 import { MotionConfig } from 'framer-motion'
+import { Analytics } from '@vercel/analytics/react'
 import { Hero } from './components/Hero'
 import { About } from './components/About'
 import { OriginStory } from './components/OriginStory'
@@ -32,6 +33,7 @@ function App() {
       </main>
       <Footer />
       <MusicPlayer />
+      <Analytics />
     </MotionConfig>
   )
 }
