@@ -32,6 +32,12 @@ const beats = [
 
 const alsoBuilt = [
   {
+    name: 'Think Peepal',
+    blurb: 'Production landing page for a focus app that turns screen time into forests.',
+    domain: 'think-peepal.vercel.app',
+    href: 'https://think-peepal.vercel.app',
+  },
+  {
     name: 'Shram',
     blurb: 'Landing page redesign for an AI follow-up agent.',
     domain: 'shram-ai.netlify.app',
@@ -144,13 +150,14 @@ export function Ascend() {
           </a>
         </div>
 
-        {/* Also built: build-to-apply landing redesigns. Cards match the beat
-            grid above; an aurora-hint glow fades in on hover. */}
+        {/* Also built: shipped landing pages, one in production for a real
+            team. Cards match the beat grid above; an aurora-hint glow fades
+            in on hover. */}
         <div className="mt-20 sm:mt-24 md:mt-28">
           <div className="text-primary text-[11px] sm:text-[13px] uppercase tracking-[0.28em] font-medium text-center mb-6 sm:mb-8">
             Also built
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 max-w-5xl mx-auto">
             {alsoBuilt.map((p) => (
               <a
                 key={p.name}

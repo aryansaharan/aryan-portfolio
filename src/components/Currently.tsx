@@ -1,7 +1,11 @@
 const items = [
   {
     label: 'Building',
-    lines: ['Shipping AI Roleplay at Lyearn', 'Voice roleplay personas, end to end'],
+    lines: [
+      'Shipping AI Roleplay at Lyearn',
+      'Voice roleplay personas, end to end',
+      'Landed the ElevenLabs startup grant for it',
+    ],
   },
   {
     label: 'Reading',
@@ -24,7 +28,7 @@ export function Currently() {
             Currently
           </div>
           <div className="text-primary/60 text-[11px] sm:text-[13px] uppercase tracking-[0.28em]">
-            June 2026
+            July 2026
           </div>
         </div>
 

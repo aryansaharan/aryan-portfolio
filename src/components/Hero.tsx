@@ -77,6 +77,12 @@ export function Hero() {
             style={{ fontSize: 'min(1.75vh, max(0.95vw, 3vmin))' }}
           >
             <ul className="flex items-center gap-[1.8em]">
+              {/* The name lives up here so a cold visitor knows whose site
+                  this is before the couplet asks anything of them. */}
+              <li className="font-semibold tracking-[-0.01em] text-primary whitespace-nowrap">
+                Aryan Saharan
+              </li>
+              <li aria-hidden className="h-[1.05em] w-px bg-primary/25" />
               {navItems.map((item) => (
                 <li key={item.label}>
                   <a
@@ -177,6 +183,39 @@ export function Hero() {
             </div>
           </div>
         </motion.div>
+
+        {/* Scroll cue: the hero reads as a full-screen poster, so first-time
+            visitors need the hint that the page continues below. Desktop only:
+            the mobile bottom edge is already taken by the tagline + player. */}
+        <div
+          aria-hidden
+          className="absolute bottom-[2.4vh] left-1/2 -translate-x-1/2 z-10 hidden sm:block pointer-events-none"
+        >
+          <motion.div style={reduceMotion ? undefined : { opacity: contentOpacity }}>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 1.6, ease: easeOut }}
+              className="flex flex-col items-center gap-[0.9em]"
+              style={{ fontSize: 'min(1.5vh, max(0.6vw, 1.6vmin))' }}
+            >
+              <span className="uppercase tracking-[0.34em] text-primary/60">
+                Scroll
+              </span>
+              <span className="relative block h-[3.4em] w-px overflow-hidden">
+                <motion.span
+                  className="absolute left-0 top-0 h-full w-full bg-gradient-to-b from-transparent via-primary/80 to-transparent"
+                  animate={reduceMotion ? undefined : { y: ['-100%', '100%'] }}
+                  transition={
+                    reduceMotion
+                      ? undefined
+                      : { duration: 2.4, repeat: Infinity, ease: 'easeInOut' }
+                  }
+                />
+              </span>
+            </motion.div>
+          </motion.div>
+        </div>
       </div>
     </section>
   )
