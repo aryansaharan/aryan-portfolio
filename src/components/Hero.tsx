@@ -74,7 +74,7 @@ export function Hero() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2, ease: easeOut }}
             className="pointer-events-auto bg-black rounded-b-2xl md:rounded-b-3xl px-[1.6em] py-[0.8em]"
-            style={{ fontSize: 'min(1.75vh, max(0.95vw, 3vmin))' }}
+            style={{ fontSize: 'min(2.05vh, max(1.1vw, 3.4vmin))' }}
           >
             <ul className="flex items-center gap-[1.8em]">
               {navItems.map((item) => (
