@@ -3,25 +3,32 @@ import { motion, useAnimation, useInView } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import { WordsPullUpMultiStyle } from './animations/WordsPullUpMultiStyle'
 
+// Research -> Call -> Build: the PM story arc, every number from the
+// fellowship research deck (surveyed cohort, RICE table, North Star).
 const beats = [
   {
-    label: 'Constraint',
-    text: '4-day build window. Designed and shipped as the NextLeap fellowship submission.',
+    label: 'Research',
+    text: 'Surveyed the cohort before designing anything: 61% named choice overload, 52% feared wasting money on the wrong course, 87% rated peer proof as decisive. North Star: confident learning decisions made per month.',
   },
   {
-    label: 'Flow',
-    text: '6-question assessment, then 3 to 5 personalized course picks with fit notes, then side-by-side compare with peer reviews.',
+    label: 'The call',
+    text: 'A narrowing machine, not another catalog. RICE scoring put the guided assessment and peer reviews in the MVP, and pushed commitment nudges and community features out.',
   },
   {
-    label: 'Recommender',
-    text: 'An LLM ranks the corpus against your answers: experience, time, goals, even a free-text role. Each pick shows the signals behind the match, and a deterministic scorer takes over if the model is unavailable.',
+    label: 'The build',
+    text: 'Six questions, then an LLM ranks 36 curated courses against the answers, a deterministic scorer standing by if the model fails. Shipped in a 4-day window as the fellowship submission.',
   },
 ]
 
+// Stories locked with the owner 2026-07-13: honest origins, no invented
+// numbers. Shram/Braino were applications sent as work; Think Peepal was
+// founder-inbound through a mutual.
 const alsoBuilt = [
   {
     name: 'Shram',
-    blurb: 'Landing page redesign for an AI follow-up agent.',
+    tag: 'Built to apply',
+    blurb:
+      'An application sent as work instead of a CV: Shram’s landing, reimagined. The founder reached out after using it.',
     domain: 'shram-ai.netlify.app',
     href: 'https://shram-ai.netlify.app',
     img: '/work/shram.webp',
@@ -30,7 +37,9 @@ const alsoBuilt = [
   },
   {
     name: 'Think Peepal',
-    blurb: 'Production landing page for a focus app that turns screen time into forests.',
+    tag: 'Client work',
+    blurb:
+      'The founder reached out through a mutual: rebuild the landing for conversions and downloads. Six rounds later it runs as the team’s production page, and every claim on it is one the app can keep.',
     domain: 'think-peepal.vercel.app',
     href: 'https://think-peepal.vercel.app',
     img: '/work/think-peepal.webp',
@@ -39,7 +48,9 @@ const alsoBuilt = [
   },
   {
     name: 'Braino',
-    blurb: 'Landing page redesign for an AI investing coach.',
+    tag: 'Built to apply',
+    blurb:
+      'The same play for an AI investing coach: lead with the buyer’s outcome, not the model. This one drew a founder’s note too.',
     domain: 'braino-landing.vercel.app',
     href: 'https://braino-landing.vercel.app',
     img: '/work/braino.webp',
@@ -70,7 +81,7 @@ export function Ascend() {
   return (
     <section
       id="features"
-      className="relative overflow-hidden bg-black py-20 sm:py-28 md:py-32 px-4 sm:px-6 lg:px-8"
+      className="relative overflow-hidden bg-black py-14 sm:py-28 md:py-32 px-4 sm:px-6 lg:px-8"
     >
       <div className="bloom-aurora" />
       <div className="relative max-w-6xl mx-auto">
@@ -110,11 +121,12 @@ export function Ascend() {
           </div>
         </div>
 
-        <p className="text-center text-primary/80 text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-12 sm:mb-16">
-          A course-recommendation MVP. Most early-career people freeze at the same step:
-          too many courses, no idea which one is theirs. Ascend asks six questions and
-          narrows the field down to three to five picks, each with a reason and peer
-          reviews.
+        <p className="text-center text-primary/80 text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-10 sm:mb-16">
+          My NextLeap fellowship build. The problem statement: early-career
+          professionals want to upskill but freeze at the choice, too many courses,
+          no conviction, money wasted on the wrong ones. Ascend answers it with a
+          guided session: six questions, three to five picks with the why behind
+          each, peer reviews beside them, no signup.
         </p>
 
         {/* The page a visitor actually lands on, clickable straight into it. */}
@@ -135,11 +147,11 @@ export function Ascend() {
           </div>
         </a>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 mb-12 sm:mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-5 mb-12 sm:mb-16">
           {beats.map((b) => (
             <div
               key={b.label}
-              className="bg-surface border border-primary/10 rounded-2xl p-6 sm:p-7 hover:border-primary/30 transition-colors"
+              className="bg-surface border border-primary/10 rounded-2xl p-5 sm:p-7 hover:border-primary/30 transition-colors"
             >
               <div className="text-[11px] sm:text-[13px] uppercase tracking-[0.24em] text-primary/70 font-medium mb-3">
                 {b.label}
@@ -168,11 +180,11 @@ export function Ascend() {
         {/* Also built: shipped landing pages, one in production for a real
             team. Cards match the beat grid above; an aurora-hint glow fades
             in on hover. */}
-        <div className="mt-20 sm:mt-24 md:mt-28">
+        <div className="mt-14 sm:mt-24 md:mt-28">
           <div className="text-primary text-[11px] sm:text-[13px] uppercase tracking-[0.28em] font-medium text-center mb-6 sm:mb-8">
             Also built
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-5 max-w-5xl mx-auto">
             {alsoBuilt.map((p) => (
               <a
                 key={p.name}
@@ -201,6 +213,9 @@ export function Ascend() {
                   />
                 </div>
                 <div className="relative p-6 sm:p-7">
+                  <div className="text-[10px] sm:text-[11px] uppercase tracking-[0.24em] text-primary/50 mb-2">
+                    {p.tag}
+                  </div>
                   <div className="flex items-center justify-between gap-3">
                     <span className="text-xl sm:text-2xl font-semibold tracking-[-0.02em] text-primary/90 group-hover:text-primary transition-colors">
                       {p.name}

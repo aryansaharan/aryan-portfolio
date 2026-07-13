@@ -7,7 +7,7 @@ const bodyText =
 
 export function About() {
   return (
-    <section className="relative overflow-hidden bg-black py-16 sm:py-20 md:py-24 px-4 sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden bg-black py-12 sm:py-20 md:py-24 px-4 sm:px-6 lg:px-8">
       <div className="bloom-amber" />
       <div className="relative bg-surface max-w-6xl mx-auto rounded-2xl md:rounded-[2rem] py-12 sm:py-16 md:py-20 px-6 sm:px-10 md:px-16 text-center">
         <div className="text-primary text-[11px] sm:text-[13px] uppercase tracking-[0.28em] font-medium mb-6 sm:mb-8">

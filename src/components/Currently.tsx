@@ -19,7 +19,7 @@ const items = [
 
 export function Currently() {
   return (
-    <section className="relative bg-black py-16 sm:py-20 md:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section className="relative bg-black py-12 sm:py-20 md:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <div className="bloom-teal" />
       <div className="absolute inset-0 bg-noise opacity-[0.08] pointer-events-none" />
       <div className="relative max-w-4xl mx-auto">
