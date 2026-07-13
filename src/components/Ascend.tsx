@@ -117,19 +117,23 @@ export function Ascend() {
           reviews.
         </p>
 
-        {/* The product itself, not a description of it: the picks screen a
-            visitor lands on after the six questions. */}
-        <div className="max-w-4xl mx-auto mb-12 sm:mb-16">
-          <div className="rounded-2xl md:rounded-3xl border border-primary/15 bg-surface overflow-hidden shadow-[0_0_120px_-30px_rgba(170,140,220,0.25)]">
+        {/* The page a visitor actually lands on, clickable straight into it. */}
+        <a
+          href="https://ascendmvp.vercel.app"
+          target="_blank"
+          rel="noreferrer"
+          className="block max-w-4xl mx-auto mb-12 sm:mb-16 group"
+        >
+          <div className="rounded-2xl md:rounded-3xl border border-primary/15 group-hover:border-primary/35 transition-colors bg-surface overflow-hidden shadow-[0_0_120px_-30px_rgba(170,140,220,0.25)]">
             <img
-              src="/work/ascend-picks.webp"
-              alt="Ascend's recommendations screen: ranked course picks, each with a fit note tied to the answers given"
+              src="/work/ascend-home.webp"
+              alt="Ascend's landing page: Overwhelmed by learning choices? Find your next skill in 15 minutes."
               className="block w-full"
               loading="lazy"
               decoding="async"
             />
           </div>
-        </div>
+        </a>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 mb-12 sm:mb-16">
           {beats.map((b) => (
@@ -154,7 +158,7 @@ export function Ascend() {
             rel="noreferrer"
             className="group inline-flex items-center gap-2 bg-primary text-black rounded-full pl-5 pr-1.5 py-1.5 font-bold text-sm sm:text-base"
           >
-            See Ascend live
+            Try Ascend live
             <span className="bg-black rounded-full w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center group-hover:scale-110 transition-transform">
               <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 text-primary group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
             </span>
@@ -185,13 +189,15 @@ export function Ascend() {
                       'radial-gradient(70% 90% at 25% 15%, rgba(245, 180, 90, 0.10) 0%, transparent 60%), radial-gradient(65% 85% at 85% 90%, rgba(170, 140, 220, 0.10) 0%, transparent 60%)',
                   }}
                 />
+                {/* Tall capture behind a 16/10 window: hovering pans slowly down
+                    the page, a peek at the whole site without leaving this one. */}
                 <div className="relative aspect-[16/10] overflow-hidden border-b border-primary/10">
                   <img
                     src={p.img}
                     alt={p.alt}
                     loading="lazy"
                     decoding="async"
-                    className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                    className="absolute inset-0 h-full w-full object-cover object-top group-hover:object-bottom transition-[object-position] duration-[7000ms] ease-linear motion-reduce:transition-none"
                   />
                 </div>
                 <div className="relative p-6 sm:p-7">

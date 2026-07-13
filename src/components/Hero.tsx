@@ -77,12 +77,6 @@ export function Hero() {
             style={{ fontSize: 'min(1.75vh, max(0.95vw, 3vmin))' }}
           >
             <ul className="flex items-center gap-[1.8em]">
-              {/* The name lives up here so a cold visitor knows whose site
-                  this is before the couplet asks anything of them. */}
-              <li className="font-semibold tracking-[-0.01em] text-primary whitespace-nowrap">
-                Aryan Saharan
-              </li>
-              <li aria-hidden className="h-[1.05em] w-px bg-primary/25" />
               {navItems.map((item) => (
                 <li key={item.label}>
                   <a
