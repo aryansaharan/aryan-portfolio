@@ -122,7 +122,7 @@ export function Ascend() {
           href="https://ascendmvp.vercel.app"
           target="_blank"
           rel="noreferrer"
-          className="block max-w-4xl mx-auto mb-12 sm:mb-16 group"
+          className="block max-w-3xl mx-auto mb-12 sm:mb-16 group"
         >
           <div className="rounded-2xl md:rounded-3xl border border-primary/15 group-hover:border-primary/35 transition-colors bg-surface overflow-hidden shadow-[0_0_120px_-30px_rgba(170,140,220,0.25)]">
             <img
@@ -189,15 +189,15 @@ export function Ascend() {
                       'radial-gradient(70% 90% at 25% 15%, rgba(245, 180, 90, 0.10) 0%, transparent 60%), radial-gradient(65% 85% at 85% 90%, rgba(170, 140, 220, 0.10) 0%, transparent 60%)',
                   }}
                 />
-                {/* Tall capture behind a 16/10 window: hovering pans slowly down
-                    the page, a peek at the whole site without leaving this one. */}
+                {/* Static preview: owner tried a hover scroll-pan and rejected
+                    it; keep the top-of-page slice still. */}
                 <div className="relative aspect-[16/10] overflow-hidden border-b border-primary/10">
                   <img
                     src={p.img}
                     alt={p.alt}
                     loading="lazy"
                     decoding="async"
-                    className="absolute inset-0 h-full w-full object-cover object-top group-hover:object-bottom transition-[object-position] duration-[7000ms] ease-linear motion-reduce:transition-none"
+                    className="absolute inset-0 h-full w-full object-cover object-top"
                   />
                 </div>
                 <div className="relative p-6 sm:p-7">
