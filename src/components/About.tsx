@@ -1,7 +1,9 @@
 import { WordsPullUpMultiStyle } from './animations/WordsPullUpMultiStyle'
 
+// One identity section now: this body absorbed the old Origin section,
+// built only from lines that already survived the copy passes.
 const bodyText =
-  'Engineer by training, PM at Lyearn now. I like the part where it doesn’t work yet.'
+  'Two and a half years ago, I was writing backend code. Now I build the product: PM at Lyearn, engineer by training. I like the part where it doesn’t work yet, and I trust a prototype over a pitch, mostly because I’ve shipped a few that didn’t survive contact with a real user.'
 
 export function About() {
   return (

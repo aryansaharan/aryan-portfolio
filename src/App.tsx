@@ -2,7 +2,6 @@ import { MotionConfig } from 'framer-motion'
 import { Analytics } from '@vercel/analytics/react'
 import { Hero } from './components/Hero'
 import { About } from './components/About'
-import { OriginStory } from './components/OriginStory'
 import { Ascend } from './components/Ascend'
 import { Currently } from './components/Currently'
 import { Footer } from './components/Footer'
@@ -24,11 +23,12 @@ function App() {
       <SmoothScroll />
       <CustomCursor />
       <main>
+        {/* Work before identity: a visitor's second scroll should land on
+            evidence, not a second bio. */}
         <Hero />
         <Marquee items={marqueeItems} />
-        <About />
-        <OriginStory />
         <Ascend />
+        <About />
         <Currently />
       </main>
       <Footer />

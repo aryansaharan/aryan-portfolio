@@ -9,45 +9,42 @@ const beats = [
     text: '4-day build window. Designed and shipped as the NextLeap fellowship submission.',
   },
   {
-    label: 'Stack',
-    text: 'Next.js 16 (App Router), React, TypeScript, Tailwind, Framer Motion. Server route calls an LLM through an OpenAI-compatible API, provider-swappable by env.',
-  },
-  {
     label: 'Flow',
     text: '6-question assessment, then 3 to 5 personalized course picks with fit notes, then side-by-side compare with peer reviews.',
-  },
-  {
-    label: 'Corpus',
-    text: '36 curated courses spanning tech (DevOps, Data, AI/ML, Frontend, Backend, PM, Design, Leadership) and non-tech (Marketing, Growth, Sales, Customer Success).',
   },
   {
     label: 'Recommender',
     text: 'An LLM ranks the corpus against your answers: experience, time, goals, even a free-text role. Each pick shows the signals behind the match, and a deterministic scorer takes over if the model is unavailable.',
   },
-  {
-    label: 'Polish',
-    text: 'Aurora atmospheric backdrop, serif-italic accents, OG image, sitemap, error and not-found boundaries.',
-  },
 ]
 
 const alsoBuilt = [
-  {
-    name: 'Think Peepal',
-    blurb: 'Production landing page for a focus app that turns screen time into forests.',
-    domain: 'think-peepal.vercel.app',
-    href: 'https://think-peepal.vercel.app',
-  },
   {
     name: 'Shram',
     blurb: 'Landing page redesign for an AI follow-up agent.',
     domain: 'shram-ai.netlify.app',
     href: 'https://shram-ai.netlify.app',
+    img: '/work/shram.webp',
+    alt: 'Shram landing page: Keep every conversation alive',
+    live: false,
+  },
+  {
+    name: 'Think Peepal',
+    blurb: 'Production landing page for a focus app that turns screen time into forests.',
+    domain: 'think-peepal.vercel.app',
+    href: 'https://think-peepal.vercel.app',
+    img: '/work/think-peepal.webp',
+    alt: 'Think Peepal landing page: Turn screen time into a forest, with a hand-drawn focus scene',
+    live: true,
   },
   {
     name: 'Braino',
     blurb: 'Landing page redesign for an AI investing coach.',
     domain: 'braino-landing.vercel.app',
     href: 'https://braino-landing.vercel.app',
+    img: '/work/braino.webp',
+    alt: 'Braino landing page: AI for insurance and investment',
+    live: false,
   },
 ]
 
@@ -78,7 +75,7 @@ export function Ascend() {
       <div className="bloom-aurora" />
       <div className="relative max-w-6xl mx-auto">
         <div className="text-primary text-[11px] sm:text-[13px] uppercase tracking-[0.28em] font-medium text-center mb-6 sm:mb-8">
-          The Project
+          Work
         </div>
 
         <div className="text-center mb-6 sm:mb-8">
@@ -120,7 +117,21 @@ export function Ascend() {
           reviews.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 mb-12 sm:mb-16">
+        {/* The product itself, not a description of it: the picks screen a
+            visitor lands on after the six questions. */}
+        <div className="max-w-4xl mx-auto mb-12 sm:mb-16">
+          <div className="rounded-2xl md:rounded-3xl border border-primary/15 bg-surface overflow-hidden shadow-[0_0_120px_-30px_rgba(170,140,220,0.25)]">
+            <img
+              src="/work/ascend-picks.webp"
+              alt="Ascend's recommendations screen: ranked course picks, each with a fit note tied to the answers given"
+              className="block w-full"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 mb-12 sm:mb-16">
           {beats.map((b) => (
             <div
               key={b.label}
@@ -164,27 +175,49 @@ export function Ascend() {
                 href={p.href}
                 target="_blank"
                 rel="noreferrer"
-                className="group relative overflow-hidden bg-surface border border-primary/10 rounded-2xl p-6 sm:p-7 hover:border-primary/30 transition-colors"
+                className="group relative overflow-hidden bg-surface border border-primary/10 rounded-2xl hover:border-primary/30 transition-colors"
               >
                 <div
                   aria-hidden
-                  className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  className="pointer-events-none absolute inset-0 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                   style={{
                     background:
-                      'radial-gradient(70% 90% at 25% 15%, rgba(245, 180, 90, 0.12) 0%, transparent 60%), radial-gradient(65% 85% at 85% 90%, rgba(170, 140, 220, 0.12) 0%, transparent 60%)',
+                      'radial-gradient(70% 90% at 25% 15%, rgba(245, 180, 90, 0.10) 0%, transparent 60%), radial-gradient(65% 85% at 85% 90%, rgba(170, 140, 220, 0.10) 0%, transparent 60%)',
                   }}
                 />
-                <div className="relative flex items-center justify-between gap-3">
-                  <span className="text-xl sm:text-2xl font-semibold tracking-[-0.02em] text-primary/90 group-hover:text-primary transition-colors">
-                    {p.name}
-                  </span>
-                  <ArrowUpRight className="w-5 h-5 shrink-0 text-primary/60 transition-all duration-300 group-hover:text-primary group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                <div className="relative aspect-[16/10] overflow-hidden border-b border-primary/10">
+                  <img
+                    src={p.img}
+                    alt={p.alt}
+                    loading="lazy"
+                    decoding="async"
+                    className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                  />
                 </div>
-                <div className="relative mt-2 text-sm sm:text-base text-primary/70 leading-snug">
-                  {p.blurb}
-                </div>
-                <div className="relative mt-3 text-[11px] sm:text-xs text-primary/60 tracking-[0.08em]">
-                  {p.domain}
+                <div className="relative p-6 sm:p-7">
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="text-xl sm:text-2xl font-semibold tracking-[-0.02em] text-primary/90 group-hover:text-primary transition-colors">
+                      {p.name}
+                    </span>
+                    <ArrowUpRight className="w-5 h-5 shrink-0 text-primary/60 transition-all duration-300 group-hover:text-primary group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                  </div>
+                  <div className="mt-2 text-sm sm:text-base text-primary/70 leading-snug">
+                    {p.blurb}
+                  </div>
+                  <div className="mt-3 flex items-center justify-between gap-3">
+                    <span className="text-[11px] sm:text-xs text-primary/60 tracking-[0.08em]">
+                      {p.domain}
+                    </span>
+                    {p.live && (
+                      <span className="flex items-center gap-1.5 text-[10px] sm:text-[11px] uppercase tracking-[0.18em] text-primary/70">
+                        <span className="relative flex h-1.5 w-1.5">
+                          <span className="motion-reduce:hidden animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400/70" />
+                          <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                        </span>
+                        Live
+                      </span>
+                    )}
+                  </div>
                 </div>
               </a>
             ))}
