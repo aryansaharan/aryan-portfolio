@@ -93,6 +93,52 @@ export function Hero() {
           </motion.nav>
         </div>
 
+        {/* Floating intro card: the brief-of-me, a LinkedIn calling card
+            hovering over the poster. Monogram stands in for a photo. */}
+        <motion.div
+          initial={{ y: -18, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.9, delay: 1.0, ease: easeOut }}
+          className="absolute left-3 top-16 sm:left-5 sm:top-5 z-20"
+        >
+          <motion.div
+            animate={reduceMotion ? undefined : { y: [0, -5, 0] }}
+            transition={
+              reduceMotion
+                ? undefined
+                : { duration: 5.5, repeat: Infinity, ease: 'easeInOut' }
+            }
+          >
+            <a
+              href="https://linkedin.com/in/aryansaharan1"
+              target="_blank"
+              rel="noreferrer"
+              className="group flex items-center gap-2.5 sm:gap-3 rounded-2xl border border-primary/15 bg-black/55 backdrop-blur-md pl-2.5 pr-3 py-2 sm:pl-3 sm:pr-4 sm:py-2.5 hover:border-primary/35 transition-colors"
+            >
+              <span className="flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full bg-primary font-serif italic text-base sm:text-lg text-black">
+                A
+              </span>
+              <span className="flex flex-col leading-tight">
+                <span className="text-[13px] sm:text-sm font-semibold text-primary">
+                  Aryan Saharan
+                </span>
+                <span className="text-[11px] sm:text-xs text-primary/70">
+                  Product Manager · ships end to end
+                </span>
+              </span>
+              {/* Inline LinkedIn glyph: this lucide version dropped brand icons. */}
+              <svg
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                aria-hidden
+                className="ml-0.5 h-3.5 w-3.5 sm:h-4 sm:w-4 text-primary/60 transition-colors group-hover:text-primary"
+              >
+                <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.55V9h3.57v11.45z" />
+              </svg>
+            </a>
+          </motion.div>
+        </motion.div>
+
         {/* Hero content, in normal flow so nothing can overlap under browser zoom
             or odd aspect ratios: a top spacer floats the couplet to roughly 60%
             of the frame, and the tagline + CTA row sits at the bottom. If zoomed
