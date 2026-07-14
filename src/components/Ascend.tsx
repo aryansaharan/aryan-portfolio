@@ -29,7 +29,6 @@ const alsoBuilt = [
     tag: 'Built to apply',
     blurb:
       'An application sent as work instead of a CV: Shram’s landing, reimagined. The founder reached out after using it.',
-    domain: 'shram-ai.netlify.app',
     href: 'https://shram-ai.netlify.app',
     img: '/work/shram.webp',
     alt: 'Shram landing page: Keep every conversation alive',
@@ -40,7 +39,6 @@ const alsoBuilt = [
     tag: 'Client work',
     blurb:
       'The founder reached out through a mutual: rebuild the landing for conversions and downloads. Six rounds later it runs as the team’s production page, and every claim on it is one the app can keep.',
-    domain: 'think-peepal.vercel.app',
     href: 'https://think-peepal.vercel.app',
     img: '/work/think-peepal.webp',
     alt: 'Think Peepal landing page: Turn screen time into a forest, with a hand-drawn focus scene',
@@ -51,7 +49,6 @@ const alsoBuilt = [
     tag: 'Built to apply',
     blurb:
       'The same play for an AI investing coach: lead with the buyer’s outcome, not the model. This one drew a founder’s note too.',
-    domain: 'braino-landing.vercel.app',
     href: 'https://braino-landing.vercel.app',
     img: '/work/braino.webp',
     alt: 'Braino landing page: AI for insurance and investment',
@@ -213,8 +210,17 @@ export function Ascend() {
                   />
                 </div>
                 <div className="relative p-6 sm:p-7">
-                  <div className="text-[10px] sm:text-[11px] uppercase tracking-[0.24em] text-primary/50 mb-2">
-                    {p.tag}
+                  <div className="mb-2 flex items-center justify-between gap-3 text-[10px] sm:text-[11px] uppercase tracking-[0.24em] text-primary/50">
+                    <span>{p.tag}</span>
+                    {p.live && (
+                      <span className="flex items-center gap-1.5 tracking-[0.18em] text-primary/70">
+                        <span className="relative flex h-1.5 w-1.5">
+                          <span className="motion-reduce:hidden animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400/70" />
+                          <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                        </span>
+                        Live
+                      </span>
+                    )}
                   </div>
                   <div className="flex items-center justify-between gap-3">
                     <span className="text-xl sm:text-2xl font-semibold tracking-[-0.02em] text-primary/90 group-hover:text-primary transition-colors">
@@ -224,20 +230,6 @@ export function Ascend() {
                   </div>
                   <div className="mt-2 text-sm sm:text-base text-primary/70 leading-snug">
                     {p.blurb}
-                  </div>
-                  <div className="mt-3 flex items-center justify-between gap-3">
-                    <span className="text-[11px] sm:text-xs text-primary/60 tracking-[0.08em]">
-                      {p.domain}
-                    </span>
-                    {p.live && (
-                      <span className="flex items-center gap-1.5 text-[10px] sm:text-[11px] uppercase tracking-[0.18em] text-primary/70">
-                        <span className="relative flex h-1.5 w-1.5">
-                          <span className="motion-reduce:hidden animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400/70" />
-                          <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                        </span>
-                        Live
-                      </span>
-                    )}
                   </div>
                 </div>
               </a>
