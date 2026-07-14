@@ -1,9 +1,9 @@
 import { WordsPullUpMultiStyle } from './animations/WordsPullUpMultiStyle'
 
-// One identity section now: this body absorbed the old Origin section,
-// built only from lines that already survived the copy passes.
+// About follows Work, so the copy claims the evidence just seen.
+// Owner-picked 2026-07-14 (headline carries "end to end", body does not repeat it).
 const bodyText =
-  'Two and a half years ago, I was writing backend code. Now I build the product: PM at Lyearn, engineer by training. I like the part where it doesn’t work yet, and I trust a prototype over a pitch, mostly because I’ve shipped a few that didn’t survive contact with a real user.'
+  'PM at Lyearn, engineer by training. The research, the copy, the code and the deploys above are all mine. I like the part where it doesn’t work yet, and I trust a prototype over a pitch, because I’ve shipped a few that didn’t survive contact with a real user.'
 
 export function About() {
   return (
@@ -19,7 +19,7 @@ export function About() {
             segments={[
               { text: 'I am Aryan Saharan.', className: 'font-normal' },
               {
-                text: 'I model the domain before I draw the screens.',
+                text: 'Everything above, I built end to end.',
                 className: 'italic font-serif font-normal',
               },
             ]}
