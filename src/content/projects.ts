@@ -152,7 +152,7 @@ export const projects: Project[] = [
       call: 'A narrowing machine, not another catalog. RICE put the guided assessment and peer reviews in the MVP and pushed community features out.',
       build:
         'An LLM ranks 36 curated courses against six answers. Malformed output is retried once; any failure falls back to a deterministic scorer, so it never errors or hangs.',
-      result: 'Live. Built in four days, after 25+ user interviews.',
+      result: 'My graduation project at the NextLeap fellowship: built in four days, after 25+ user interviews, and still live.',
     },
   },
 ]
