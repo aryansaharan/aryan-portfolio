@@ -48,7 +48,7 @@ export const projects: Project[] = [
     tint: ['#ECEFE4', '#111510'],
     story: {
       problem:
-        'A tree grows while you study, and real ones get planted with farming families across India. The app has to make that worth opening every day.',
+        'Every focused minute grows a tree, and real ones get planted with farming families across India. The app has to make that worth opening every day.',
       call: 'Keep everything the app has to be in one place: a build book that wins on product, design and data, where every change lands first.',
       build:
         'The product and its rules, a design system in two themes, painted trees across five growth stages, fourteen species and five regions, 32 screens with specs, and ten user flows.',
@@ -151,7 +151,7 @@ export const projects: Project[] = [
         'Surveyed early-career learners first: 61% named choice overload, 52% feared wasting money on the wrong course, 87% rated peer proof as decisive.',
       call: 'A narrowing machine, not another catalog. RICE put the guided assessment and peer reviews in the MVP and pushed community features out.',
       build:
-        'An LLM ranks 36 curated courses against six answers. Malformed output is retried once; any failure falls back to a deterministic scorer, so it never errors or hangs.',
+        'An LLM ranks 64 curated courses against six answers. Malformed output is retried once; any failure falls back to a deterministic scorer, so it never errors or hangs.',
       result: 'My graduation project at the NextLeap fellowship: built in four days, after 25+ user interviews, and still live.',
     },
   },

@@ -3,9 +3,10 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { Moon, Sun } from 'lucide-react'
 import { ease } from './tokens'
 
-// Light and dark, both taken from the statue. Switching spreads the new
-// theme from the button in a circle (View Transitions where supported,
-// an instant swap elsewhere and under reduced motion).
+// Light and dark, both taken from the statue. The default follows the
+// visitor's own clock (set before paint in index.html); a choice made here
+// is remembered. Switching spreads the new theme from the button in a
+// circle (View Transitions where supported, an instant swap elsewhere).
 export function ThemeToggle() {
   const [dark, setDark] = useState(() => document.documentElement.classList.contains('dark'))
 
@@ -13,6 +14,7 @@ export function ThemeToggle() {
     const next = !dark
     const apply = () => {
       document.documentElement.classList.toggle('dark', next)
+      document.querySelector('meta[name="theme-color"]')?.setAttribute('content', next ? '#090909' : '#FAFAF9')
       try {
         localStorage.setItem('theme', next ? 'dark' : 'light')
       } catch {

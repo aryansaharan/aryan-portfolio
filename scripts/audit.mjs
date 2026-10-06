@@ -22,8 +22,8 @@ const targets = [
 async function run(tag, w, h, scheme, dpr) {
   const p = await browser.newPage()
   await p.setViewport({ width: w, height: h, deviceScaleFactor: dpr })
-  await p.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: scheme }])
-  await p.evaluateOnNewDocument(() => localStorage.clear())
+  // The theme follows the clock unless chosen, so choose it explicitly.
+  await p.evaluateOnNewDocument((s) => localStorage.setItem('theme', s), scheme)
   p.on('pageerror', (e) => console.log(tag, 'pageerror', e.message))
   p.on('console', (m) => m.type() === 'error' && console.log(tag, 'console', m.text()))
   p.on('requestfailed', (r) => console.log(tag, 'requestfailed', r.url()))

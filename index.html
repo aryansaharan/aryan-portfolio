@@ -5,14 +5,18 @@
     <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png?v=3" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#FAFAF9" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#090909" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#FAFAF9" />
     <script>
-      // Set the theme before first paint: saved choice, else the system.
+      // Set the theme before first paint. A choice made with the toggle wins;
+      // otherwise it follows the visitor's own clock: the drawing by day
+      // (6 am to 7 pm, their local time), the marble after dark.
       try {
         var t = localStorage.getItem('theme')
-        if (t === 'dark' || (!t && matchMedia('(prefers-color-scheme: dark)').matches))
+        var h = new Date().getHours()
+        if (t === 'dark' || (!t && (h < 6 || h >= 19))) {
           document.documentElement.classList.add('dark')
+          document.querySelector('meta[name="theme-color"]').content = '#090909'
+        }
       } catch (e) {}
     </script>
     <link rel="canonical" href="https://aryansaharan.vercel.app/" />

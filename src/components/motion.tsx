@@ -105,20 +105,26 @@ export function Scramble({ text, delay = 0 }: { text: string; delay?: number }) 
   )
 }
 
-/** A line that rises into place from behind its own baseline, once. */
+/** A line that rises into place from behind its own baseline, once.
+ *  The clipping box is what's watched, not the moving text: text that
+ *  starts fully clipped (a long line wrapping on a phone) would never
+ *  register as visible. */
 export function Rise({ children, delay = 0, className = '' }: { children: ReactNode; delay?: number; className?: string }) {
   return (
-    <span className={`mb-[-0.14em] block overflow-hidden pb-[0.14em] ${className}`}>
+    <motion.span
+      className={`-mb-[0.14em] block overflow-hidden pb-[0.14em] ${className}`}
+      initial="hidden"
+      whileInView="shown"
+      viewport={{ once: true, margin: '0px 0px -8% 0px' }}
+    >
       <motion.span
         className="block"
-        initial={{ y: '108%' }}
-        whileInView={{ y: '0%' }}
-        viewport={{ once: true, margin: '0px 0px -8% 0px' }}
+        variants={{ hidden: { y: '108%' }, shown: { y: '0%' } }}
         transition={{ duration: 0.95, delay, ease }}
       >
         {children}
       </motion.span>
-    </span>
+    </motion.span>
   )
 }
 
