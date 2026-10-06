@@ -129,7 +129,7 @@ export function RecordPlayer() {
     <>
       <div
         ref={card}
-        className="grid items-center gap-8 rounded-[28px] border border-ink/10 bg-ink/[0.025] p-6 sm:grid-cols-[minmax(0,330px)_1fr] sm:gap-10 sm:p-8 lg:grid-cols-2 lg:gap-12 lg:px-14 lg:py-12"
+        className="grid items-center gap-8 rounded-[28px] border border-ink/10 bg-ink/2.5 p-6 sm:grid-cols-[minmax(0,330px)_1fr] sm:gap-10 sm:p-8 lg:grid-cols-2 lg:gap-12 lg:px-14 lg:py-12"
       >
         <audio ref={audio} src={track.url} preload="none" />
         <div className="lg:my-10 lg:origin-center lg:scale-[1.3] lg:justify-self-center">
@@ -272,7 +272,7 @@ function Turntable({ playing, onToggle, title }: { playing: boolean; onToggle: (
       {/* The sleeve. */}
       <span className="absolute left-0 top-0 block h-[200px] w-[200px] overflow-hidden rounded-[6px] shadow-[0_24px_50px_-20px_rgba(0,0,0,0.55),0_0_0_1px_rgba(0,0,0,0.08)] sm:h-[220px] sm:w-[220px]">
         <img src={COVER} alt="" className="h-full w-full object-cover" />
-        <span className="absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-black/20" />
+        <span className="absolute inset-0 bg-linear-to-br from-white/15 via-transparent to-black/20" />
       </span>
 
       {/* The arm: rests off the record, swings on when it plays. */}

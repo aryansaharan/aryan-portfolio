@@ -132,8 +132,8 @@ function Plate({ project: p }: { project: Project }) {
       aria-label={`Open ${p.name}`}
       onPointerMove={onMove}
       onPointerLeave={onLeave}
-      className={`group relative mt-8 block overflow-hidden rounded-[22px] bg-[var(--tint)] dark:bg-[var(--tint-dark)] sm:mt-10 sm:aspect-[16/9] sm:rounded-[28px] ${
-        p.kind === 'app' ? 'aspect-[4/5]' : 'aspect-square'
+      className={`group relative mt-8 block overflow-hidden rounded-[22px] bg-(--tint) dark:bg-(--tint-dark) sm:mt-10 sm:aspect-video sm:rounded-[28px] ${
+        p.kind === 'app' ? 'aspect-4/5' : 'aspect-square'
       }`}
       style={{ ['--tint' as string]: p.tint[0], ['--tint-dark' as string]: p.tint[1] }}
       initial={reduce ? false : { opacity: 0, scale: 0.975 }}
@@ -146,7 +146,7 @@ function Plate({ project: p }: { project: Project }) {
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(90%_70%_at_15%_0%,rgba(255,255,255,0.7),transparent_60%)] dark:bg-[radial-gradient(90%_70%_at_15%_0%,rgba(255,255,255,0.05),transparent_60%)]"
       />
       {p.kind === 'app' ? <AppScene project={p} depth={depth} /> : <WebScene project={p} depth={depth} />}
-      <span className="absolute bottom-4 left-5 flex items-center gap-1.5 rounded-full bg-black/70 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.12em] text-white opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100 sm:bottom-6 sm:left-7">
+      <span className="absolute bottom-4 left-5 flex items-center gap-1.5 rounded-full bg-black/70 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.12em] text-white opacity-0 backdrop-blur-xs transition-opacity duration-300 group-hover:opacity-100 sm:bottom-6 sm:left-7">
         Open <ArrowUpRight className="h-3 w-3" />
       </span>
     </motion.a>
@@ -168,13 +168,13 @@ function WebScene({ project: p, depth }: { project: Project; depth: Depth }) {
         style={depth ? { x: depth.nearX, y: depth.nearY } : undefined}
       >
         <div className="overflow-hidden rounded-[10px] bg-white shadow-[0_40px_90px_-40px_rgba(0,0,0,0.5),0_0_0_1px_rgba(0,0,0,0.08)] transition-transform duration-700 ease-out group-hover:-translate-y-1">
-          <div className="flex h-6 items-center gap-1.5 border-b border-black/[0.06] bg-[#F6F6F4] px-3 sm:h-7">
+          <div className="flex h-6 items-center gap-1.5 border-b border-black/6 bg-[#F6F6F4] px-3 sm:h-7">
             <span className="h-[7px] w-[7px] rounded-full bg-black/10" />
             <span className="h-[7px] w-[7px] rounded-full bg-black/10" />
             <span className="h-[7px] w-[7px] rounded-full bg-black/10" />
             <span className="mx-auto pr-10 font-mono text-[9px] tracking-[0.04em] text-black/40 sm:text-[10px]">{host}</span>
           </div>
-          <img src={p.image} alt={p.alt} loading="lazy" decoding="async" className="block aspect-[16/10] w-full object-cover object-top" />
+          <img src={p.image} alt={p.alt} loading="lazy" decoding="async" className="block aspect-16/10 w-full object-cover object-top" />
         </div>
       </motion.div>
       {d && (
@@ -203,7 +203,7 @@ function AppScene({ project: p, depth }: { project: Project; depth: Depth }) {
     src && (
       <div className="rounded-[26px] bg-[#0B0B0B] p-[4px] shadow-[0_40px_80px_-30px_rgba(0,0,0,0.6)] sm:rounded-[34px] sm:p-[6px]">
         <div className="overflow-hidden rounded-[22px] sm:rounded-[28px]">
-          <img src={src} alt={alt} loading="lazy" decoding="async" className="block aspect-[352/738] w-full object-cover object-top" />
+          <img src={src} alt={alt} loading="lazy" decoding="async" className="block aspect-352/738 w-full object-cover object-top" />
         </div>
       </div>
     )

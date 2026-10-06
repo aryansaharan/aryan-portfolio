@@ -108,7 +108,7 @@ export function Scramble({ text, delay = 0 }: { text: string; delay?: number }) 
 /** A line that rises into place from behind its own baseline, once. */
 export function Rise({ children, delay = 0, className = '' }: { children: ReactNode; delay?: number; className?: string }) {
   return (
-    <span className={`-mb-[0.14em] block overflow-hidden pb-[0.14em] ${className}`}>
+    <span className={`mb-[-0.14em] block overflow-hidden pb-[0.14em] ${className}`}>
       <motion.span
         className="block"
         initial={{ y: '108%' }}

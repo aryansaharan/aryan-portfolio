@@ -35,7 +35,7 @@ export function Header() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-500 ${
-        scrolled ? 'border-ink/[0.07] bg-paper/90 backdrop-blur-sm' : 'border-transparent bg-transparent'
+        scrolled ? 'border-ink/[0.07] bg-paper/90 backdrop-blur-xs' : 'border-transparent bg-transparent'
       }`}
     >
       <div className={`${CONTAINER} flex h-14 items-center justify-between sm:h-16`}>
@@ -65,7 +65,7 @@ export function Header() {
               {active === s.id && (
                 <motion.span
                   layoutId="nav-active"
-                  className="absolute inset-0 -z-10 rounded-full bg-ink/[0.06]"
+                  className="absolute inset-0 -z-10 rounded-full bg-ink/6"
                   transition={{ duration: 0.45, ease }}
                 />
               )}

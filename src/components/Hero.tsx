@@ -29,7 +29,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className={`${CONTAINER} flex min-h-[100svh] items-center pb-16 pt-24 sm:pb-20`}
+      className={`${CONTAINER} flex min-h-svh items-center pb-16 pt-24 sm:pb-20`}
       onPointerMove={(e) => {
         if (e.pointerType !== 'mouse') return
         x.set(e.clientX)
@@ -59,7 +59,7 @@ export function Hero() {
               className="font-mono text-[11px] uppercase tracking-[0.16em] text-ink/70 sm:text-[12px]"
             />
           </motion.div>
-          <motion.p {...enter(3)} className="mt-8 max-w-[30rem] text-[17px] leading-[1.7] text-ink/70 sm:text-[18px]">
+          <motion.p {...enter(3)} className="mt-8 max-w-120 text-[17px] leading-[1.7] text-ink/70 sm:text-[18px]">
             Engineer turned product manager. I like finding the real problem, making the call,
             and then <Mark delay={1}>building it myself</Mark>, mostly with Claude Code and Cursor.
           </motion.p>

@@ -92,7 +92,7 @@ export function Statue({ pointer }: { pointer: { x: MotionValue<number>; y: Moti
 
   return (
     <figure className="relative w-full">
-      <div ref={ref} className="relative aspect-square w-full [perspective:1000px]">
+      <div ref={ref} className="relative aspect-square w-full perspective-[1000px]">
         <motion.div
           className="absolute inset-0"
           style={{ rotateX: rx, rotateY: ry, maskImage: FADE, WebkitMaskImage: FADE }}

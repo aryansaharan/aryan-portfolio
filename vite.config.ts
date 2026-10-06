@@ -1,7 +1,8 @@
 import { defineConfig, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
-import { projects } from './src/content/projects'
-import { TARGETS, checkAll, type StatusReport } from './api/status'
+import tailwindcss from '@tailwindcss/vite'
+import { projects } from './src/content/projects.ts'
+import { TARGETS, checkAll, type StatusReport } from './api/status.ts'
 
 const SNAPSHOT_ID = 'virtual:status-snapshot'
 
@@ -47,5 +48,5 @@ function liveStatus(): Plugin {
 }
 
 export default defineConfig({
-  plugins: [react(), liveStatus()],
+  plugins: [react(), tailwindcss(), liveStatus()],
 })

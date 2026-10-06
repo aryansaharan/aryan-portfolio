@@ -21,7 +21,7 @@ export function Currently() {
               <Reveal
                 key={r.label}
                 delay={i * 0.06}
-                className="grid gap-1.5 border-b border-ink/[0.07] pb-5 pt-0 [&:not(:first-child)]:pt-5 sm:grid-cols-[120px_1fr] sm:gap-6"
+                className="grid gap-1.5 border-b border-ink/[0.07] pb-5 pt-0 not-first:pt-5 sm:grid-cols-[120px_1fr] sm:gap-6"
               >
                 <dt className="pt-1 font-mono text-[10.5px] uppercase tracking-[0.12em] text-muted">{r.label}</dt>
                 <dd className="text-[17px] text-ink/85">{r.body}</dd>

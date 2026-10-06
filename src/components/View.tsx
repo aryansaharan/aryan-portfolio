@@ -27,7 +27,7 @@ export function View() {
       <div className={GRID}>
         <motion.div
           ref={frame}
-          className="relative isolate col-span-full aspect-[4/5] overflow-hidden rounded-[22px] bg-[#111] [transform:translateZ(0)] sm:aspect-[21/9] sm:rounded-[28px]"
+          className="relative isolate col-span-full aspect-4/5 overflow-hidden rounded-[22px] bg-[#111] transform-[translateZ(0)] sm:aspect-21/9 sm:rounded-[28px]"
           initial={reduce ? false : { clipPath: 'inset(5% 4% 5% 4% round 32px)', opacity: 0 }}
           whileInView={{ clipPath: 'inset(0% 0% 0% 0% round 0px)', opacity: 1 }}
           viewport={{ once: true, margin: '0px 0px -12% 0px' }}
@@ -45,9 +45,9 @@ export function View() {
             className="absolute inset-0 h-full w-full object-cover object-[50%_62%]"
             style={reduce ? undefined : { scale }}
           />
-          <span aria-hidden className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/5 to-transparent" />
+          <span aria-hidden className="absolute inset-0 bg-linear-to-t from-black/55 via-black/5 to-transparent" />
           <div className="absolute inset-x-0 bottom-0 flex flex-wrap items-end justify-between gap-4 p-6 sm:p-10">
-            <p className="text-balance text-[clamp(1.5rem,2.6vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.025em] text-white">
+            <p className="text-balance text-[clamp(1.5rem,2.6vw,2.4rem)] font-medium leading-[1.1] tracking-tight text-white">
               <Rise>Above the noise.</Rise>
             </p>
             <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-white/60">

@@ -16,7 +16,7 @@ export function Path() {
         <div className="col-span-4 mt-5 sm:col-span-3">
           <div className="sm:sticky sm:top-24">
             <Label>Path</Label>
-            <p className="mt-3 max-w-[14rem] text-[14px] leading-relaxed text-ink/55">
+            <p className="mt-3 max-w-56 text-[14px] leading-relaxed text-ink/55">
               Engineering first, then product. Now building.
             </p>
           </div>
@@ -79,9 +79,9 @@ function Stop({
             </>
           )}
         </p>
-        <p className="font-mono text-[10.5px] uppercase tracking-[0.1em] text-muted">{when}</p>
+        <p className="font-mono text-[10.5px] uppercase tracking-widest text-muted">{when}</p>
       </div>
-      {note && <p className="mt-2 max-w-[34rem] text-[15px] leading-relaxed text-ink/60">{note}</p>}
+      {note && <p className="mt-2 max-w-136 text-[15px] leading-relaxed text-ink/60">{note}</p>}
     </Reveal>
   )
 }
