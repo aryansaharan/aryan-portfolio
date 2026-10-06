@@ -62,7 +62,7 @@ export const projects: Project[] = [
     year: '2026',
     line: 'Describe an app in plain words, see it sketched, then get a real one. For people who code and people who don’t.',
     url: 'https://prod-ai-studio.vercel.app',
-    repo: 'https://github.com/aryansaharan/architect-2',
+    repo: 'https://github.com/aryansaharan/prod-ai',
     kind: 'web',
     image: '/work/prod-ai.webp',
     alt: 'Prod AI: a finished Claims Triage Desk on its sheet, with notes in the margin and a Publish button',
