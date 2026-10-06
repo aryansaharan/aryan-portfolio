@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png?v=3" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#FAFAF9" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#090909" media="(prefers-color-scheme: dark)" />
+    <script>
+      // Set the theme before first paint: saved choice, else the system.
+      try {
+        var t = localStorage.getItem('theme')
+        if (t === 'dark' || (!t && matchMedia('(prefers-color-scheme: dark)').matches))
+          document.documentElement.classList.add('dark')
+      } catch (e) {}
+    </script>
+    <link rel="canonical" href="https://aryansaharan.vercel.app/" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@400..800&family=Martian+Mono:wdth,wght@87.5,300..500&display=swap"
+      rel="stylesheet"
+    />
+    <title>Aryan Saharan · Technical Product Manager</title>
+    <meta
+      name="description"
+      content="Aryan Saharan, engineer turned product manager. I find the problem, make the call, and build the AI product myself."
+    />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://aryansaharan.vercel.app/" />
+    <meta property="og:title" content="Aryan Saharan, Technical Product Manager" />
+    <meta
+      property="og:description"
+      content="Engineer turned product manager. I find the problem, make the call, and build the AI product myself."
+    />
+    <meta property="og:image" content="https://aryansaharan.vercel.app/og.png?v=4" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Aryan Saharan, Technical Product Manager" />
+    <meta
+      name="twitter:description"
+      content="Engineer turned product manager. I find the problem, make the call, and build the AI product myself."
+    />
+    <meta name="twitter:image" content="https://aryansaharan.vercel.app/og.png?v=4" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
