@@ -148,11 +148,11 @@ export const projects: Project[] = [
     tint: ['#F1EEF4', '#141218'],
     story: {
       problem:
-        'Surveyed the cohort first: 61% named choice overload, 52% feared wasting money on the wrong course, 87% rated peer proof as decisive.',
+        'Surveyed early-career learners first: 61% named choice overload, 52% feared wasting money on the wrong course, 87% rated peer proof as decisive.',
       call: 'A narrowing machine, not another catalog. RICE put the guided assessment and peer reviews in the MVP and pushed community features out.',
       build:
         'An LLM ranks 36 curated courses against six answers. Malformed output is retried once; any failure falls back to a deterministic scorer, so it never errors or hangs.',
-      result: 'Shipped in four days after 25+ user interviews, as my NextLeap fellowship submission.',
+      result: 'Live. Built in four days, after 25+ user interviews.',
     },
   },
 ]
