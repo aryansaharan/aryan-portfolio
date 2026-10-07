@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "sketch": "node scripts/statue-sketch.mjs",
+    "sketch": "node scripts/statue-sketch.mjs && cwebp -quiet -q 80 -alpha_q 88 -resize 1000 0 public/statue-sketch.png -o public/statue-sketch.webp && rm public/statue-sketch.png",
     "og": "node scripts/og.mjs",
     "audit": "node scripts/audit.mjs"
   },
