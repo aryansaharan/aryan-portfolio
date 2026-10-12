@@ -56,11 +56,14 @@ body {
   overflow-x: clip;
 }
 
-button,
-input,
-select,
-textarea {
-  font: inherit;
+/* In the base layer, so a size or face set on a button still wins. */
+@layer base {
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
 }
 
 ::selection {

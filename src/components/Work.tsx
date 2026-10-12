@@ -210,19 +210,19 @@ function AppScene({ project: p, depth }: { project: Project; depth: Depth }) {
   return (
     <>
       <motion.div
-        className="absolute left-[4%] top-[16%] w-[34%] sm:left-[24%] sm:top-[15%] sm:w-[17%]"
+        className="absolute left-[4%] top-[22%] w-[34%] sm:left-[22%] sm:top-[15%] sm:w-[18.5%]"
         style={depth ? { x: depth.farX, y: depth.farY } : undefined}
       >
-        <div className="transition-transform duration-700 ease-out group-hover:-translate-y-1">{phone(left, 'The focus timer')}</div>
+        <div className="transition-transform duration-700 ease-out group-hover:-translate-y-1">{phone(left, 'A session running')}</div>
       </motion.div>
       <motion.div
-        className="absolute right-[4%] top-[16%] w-[34%] sm:right-[24%] sm:top-[15%] sm:w-[17%]"
+        className="absolute right-[4%] top-[22%] w-[34%] sm:right-[22%] sm:top-[15%] sm:w-[18.5%]"
         style={depth ? { x: depth.farX, y: depth.farY } : undefined}
       >
         <div className="transition-transform duration-700 ease-out group-hover:-translate-y-1">{phone(right, 'The orchard')}</div>
       </motion.div>
       <motion.div
-        className="absolute left-[30%] top-[8%] w-[40%] sm:left-[40.25%] sm:top-[7%] sm:w-[19.5%]"
+        className="absolute left-[30%] top-[14%] w-[40%] sm:left-[39.25%] sm:top-[7%] sm:w-[21.5%]"
         style={depth ? { x: depth.nearX, y: depth.nearY } : undefined}
       >
         <div className="transition-transform duration-700 ease-out group-hover:-translate-y-2">{phone(center, p.alt)}</div>

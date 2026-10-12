@@ -37,22 +37,23 @@ export const projects: Project[] = [
     name: 'Think Peepal',
     lane: 'Now',
     year: '2026',
-    line: 'A focus timer where a tree grows while you study. I’m building it: the plan, the product, and every screen.',
+    line: 'A focus timer where a tree grows while you focus. I’m building it: the plan, the product, and every screen.',
     url: 'https://think-peepal.vercel.app',
     kind: 'app',
-    alt: 'Think Peepal on a phone: the focus timer, a session running, and the orchard',
+    alt: 'Think Peepal on a phone: a session running, the mango tree it grew, and the orchard',
     screens: {
-      light: ['/work/tp-06-earth.webp', '/work/tp-08-earth.webp', '/work/tp-10-earth.webp'],
-      dark: ['/work/tp-06-forest.webp', '/work/tp-08-forest.webp', '/work/tp-10-forest.webp'],
+      // left, front, right: a session, the tree it grew, the orchard it joins
+      light: ['/work/tp-08-earth.webp', '/work/tp-09-earth.webp', '/work/tp-10-earth.webp'],
+      dark: ['/work/tp-08-forest.webp', '/work/tp-09-forest.webp', '/work/tp-10-forest.webp'],
     },
     tint: ['#ECEFE4', '#111510'],
     story: {
       problem:
-        'Every focused minute grows a tree, and real ones get planted with farming families across India. The app has to make that worth opening every day.',
-      call: 'Keep everything the app has to be in one place: a build book that wins on product, design and data, where every change lands first.',
+        'A plain timer asks nothing of you, so it is easy to ignore. Here a tree grows while you focus and stays in your orchard; in the stakes modes, leaving early kills it.',
+      call: 'Let people pick the stakes: Gardener asks nothing, Farmer runs on honour, Kisan locks your apps behind a physical seed. Phone face down, the tree lives; switch apps, it withers.',
       build:
-        'The product and its rules, a design system in two themes, painted trees across five growth stages, fourteen species and five regions, 32 screens with specs, and ten user flows.',
-      result: 'In build now with senior engineers, against the book.',
+        'Mapped 12 user journeys, designed an onboarding that never asks for an account, then 35 screens across 11 flows in two themes, with trees that grow through five stages, 14 species and 5 regions. All in one build book.',
+      result: 'In build now with senior engineers, against the book. Version 1.4, and every change still lands there first.',
     },
   },
   {
@@ -134,7 +135,7 @@ export const projects: Project[] = [
     id: 'ascend',
     name: 'Ascend',
     lane: 'Solo',
-    year: '2026',
+    year: '2025',
     line: 'Six questions, then a short list of courses you’re likely to finish, and why each one.',
     url: 'https://ascendmvp.vercel.app',
     kind: 'web',
@@ -170,7 +171,7 @@ export const experience = [
     role: 'Building Think Peepal',
     org: '',
     when: 'Jul 2026 to now',
-    note: 'The plan, the product, the design system and all 32 screens.',
+    note: 'The plan, the product, the design system and all 35 screens.',
   },
   {
     role: 'Product Manager',

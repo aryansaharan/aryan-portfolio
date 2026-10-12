@@ -294,7 +294,8 @@ function Turntable({ playing, onToggle, title }: { playing: boolean; onToggle: (
   )
 }
 
-// Bars from the real signal while playing; a calm baseline otherwise.
+// Bars from the real signal while playing; at rest, a faint still spectrum
+// (a flat row of stubs read as a stray dashed line).
 function Bars({ analyser, playing }: { analyser: AnalyserNode | null; playing: boolean }) {
   const ref = useRef<HTMLCanvasElement>(null)
   useEffect(() => {
@@ -309,7 +310,8 @@ function Bars({ analyser, playing }: { analyser: AnalyserNode | null; playing: b
     c.height = H * dpr
     const N = 16
     const data = new Uint8Array(analyser ? analyser.frequencyBinCount : 64)
-    const level = new Float32Array(N)
+    const rest = Float32Array.from({ length: N }, (_, k) => 0.14 + 0.32 * Math.abs(Math.sin(k * 1.7 + 0.6)) * (1 - (k / N) * 0.55))
+    const level = Float32Array.from(rest)
     let raf = 0
     const draw = () => {
       const ink = getComputedStyle(document.documentElement).getPropertyValue('--ink').trim()
@@ -319,10 +321,11 @@ function Bars({ analyser, playing }: { analyser: AnalyserNode | null; playing: b
       ctx.fillStyle = `rgb(${ink} / ${playing ? 0.6 : 0.18})`
       let moving = false
       for (let k = 0; k < N; k++) {
-        const v = analyser && playing ? data[2 + Math.floor((k * (data.length * 0.55)) / N)] / 255 : 0
+        const v = analyser && playing ? data[2 + Math.floor((k * (data.length * 0.55)) / N)] / 255 : rest[k]
+        const before = level[k]
         level[k] += (v - level[k]) * 0.25
-        if (level[k] > 0.01) moving = true
-        const h = Math.max(playing ? 2 : 1, level[k] * H)
+        if (Math.abs(level[k] - before) > 0.002) moving = true
+        const h = Math.max(2, level[k] * H)
         ctx.fillRect(k * 6, H - h, 3, h)
       }
       if (playing || moving) raf = requestAnimationFrame(draw)
