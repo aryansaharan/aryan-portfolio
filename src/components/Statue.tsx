@@ -1,98 +1,122 @@
-import { useEffect, useRef } from 'react'
-import {
-  animate,
-  motion,
-  useInView,
-  useMotionTemplate,
-  useMotionValue,
-  useReducedMotion,
-  useSpring,
-  type MotionValue,
-} from 'framer-motion'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { motion, useInView, useMotionValue, useReducedMotion, useSpring, type MotionValue } from 'framer-motion'
 import { useIsDark } from '../hooks/useIsDark'
 import { ease } from './tokens'
 import { Scramble } from './motion'
+import { createStatueGL, type StatueGL } from './statue-gl'
 
 // The mark, at full size, in two states:
-//   light  a graphite study on paper that draws itself in;
-//   dark   the marble in a dark room, lit by a spotlight that follows the
-//          cursor and wanders on its own when nobody is pointing.
+//   light  a graphite study on paper that redraws itself, catches a sheen
+//          where the light falls, and smudges under a dragging finger;
+//   dark   the marble in a dark room, raked by a light that follows the
+//          cursor (or a finger) and wanders on its own when nobody is pointing.
 // Switching theme turns the drawing into stone.
-const SKETCH = '/statue-sketch.webp'
-const MARBLE = '/statue-marble.webp'
+const SRC = { graphite: '/statue-graphite.webp', marble: '/statue-marble.webp', relief: '/statue-relief.webp' }
 // Dissolves the tile's edges so the bust rises out of the page.
 const FADE = 'radial-gradient(112% 88% at 50% 30%, #000 50%, transparent 76%)'
 
-export function Statue({ pointer }: { pointer: { x: MotionValue<number>; y: MotionValue<number>; active: MotionValue<number> } }) {
+type Pointer = { x: MotionValue<number>; y: MotionValue<number>; active: MotionValue<number> }
+
+export function Statue({ pointer }: { pointer: Pointer }) {
   const dark = useIsDark()
   const reduce = useReducedMotion()
-  const ref = useRef<HTMLDivElement>(null)
-  // The light and tilt only run while the statue is on screen.
-  const onScreen = useInView(ref)
+  const stage = useRef<HTMLDivElement>(null)
+  const engine = useRef<StatueGL | null>(null)
+  const [failed, setFailed] = useState(false)
+  const [shown, setShown] = useState(false)
+  const live = !reduce && !failed
+  // The light only runs while the statue is on screen.
+  const onScreen = useInView(stage)
 
-  // Warm the other theme's image once the page is idle, so the switch is instant.
-  useEffect(() => {
-    const t = setTimeout(() => {
-      const img = new Image()
-      img.src = dark ? SKETCH : MARBLE
-    }, 2500)
-    return () => clearTimeout(t)
-  }, [dark])
+  // While a finger is down, it owns the light (not the hero's mouse).
+  const touching = useRef(false)
 
-  // Tilt toward the pointer, a few degrees, damped.
+  // Tilt toward the light, a few degrees, damped.
   const rx = useSpring(useMotionValue(0), { stiffness: 90, damping: 20 })
   const ry = useSpring(useMotionValue(0), { stiffness: 90, damping: 20 })
-  // Spotlight position in % of the stage.
-  const lx = useSpring(useMotionValue(38), { stiffness: 60, damping: 18 })
-  const ly = useSpring(useMotionValue(30), { stiffness: 60, damping: 18 })
 
-  useEffect(() => {
-    if (reduce || !onScreen) return
-    let raf = 0
-    const t0 = performance.now()
-    const tick = (now: number) => {
-      const el = ref.current
-      if (el) {
-        const r = el.getBoundingClientRect()
-        if (pointer.active.get() > 0.5) {
-          const px = ((pointer.x.get() - r.left) / r.width) * 100
-          const py = ((pointer.y.get() - r.top) / r.height) * 100
-          lx.set(Math.max(5, Math.min(95, px)))
-          ly.set(Math.max(5, Math.min(90, py)))
-          ry.set(Math.max(-1, Math.min(1, px / 50 - 1)) * 5)
-          rx.set(-Math.max(-1, Math.min(1, py / 50 - 1)) * 4)
-        } else {
-          // Idle: the light drifts slowly across the shoulders and the curls.
-          const s = (now - t0) / 1000
-          lx.set(50 + Math.sin(s * 0.23) * 26)
-          ly.set(40 + Math.sin(s * 0.17 + 1.2) * 18)
-          rx.set(0)
-          ry.set(0)
-        }
-      }
-      raf = requestAnimationFrame(tick)
+  // The engine lives as long as its canvas; without WebGL, the still images stand in.
+  const mount = useCallback((el: HTMLCanvasElement | null) => {
+    if (!el) return
+    const gl = createStatueGL(el, SRC, () => setShown(true))
+    if (!gl) {
+      setFailed(true)
+      return
     }
-    raf = requestAnimationFrame(tick)
-    return () => cancelAnimationFrame(raf)
-  }, [reduce, onScreen, pointer, lx, ly, rx, ry])
+    engine.current = gl
+    return () => {
+      gl.destroy()
+      engine.current = null
+    }
+  }, [])
 
-  const light = useMotionTemplate`radial-gradient(circle at ${lx}% ${ly}%, #000 0%, rgba(0,0,0,0.85) 11%, rgba(0,0,0,0.3) 25%, transparent 38%)`
+  useEffect(() => engine.current?.setDark(dark), [dark, live])
+  useEffect(() => engine.current?.setVisible(onScreen), [onScreen, live])
 
-  // The study draws itself in along a diagonal, once.
-  const sweep = useMotionValue(reduce ? 120 : -20)
+  // Points in the stage's own 0..1 space.
+  const local = (cx: number, cy: number) => {
+    const r = stage.current!.getBoundingClientRect()
+    return [(cx - r.left) / r.width, (cy - r.top) / r.height] as const
+  }
+  const aim = (x: number, y: number, active: boolean) => {
+    engine.current?.point(x, y, active)
+    ry.set(active ? Math.max(-1, Math.min(1, x * 2 - 1)) * 5 : 0)
+    rx.set(active ? -Math.max(-1, Math.min(1, y * 2 - 1)) * 4 : 0)
+  }
+
+  // The whole hero steers the light with a mouse.
   useEffect(() => {
-    if (reduce || dark) return
-    sweep.set(-20)
-    const c = animate(sweep, 120, { duration: 2.4, delay: 0.35, ease })
-    return () => c.stop()
-  }, [dark, reduce, sweep])
-  const draw = useMotionTemplate`linear-gradient(120deg, #000 ${sweep}%, transparent calc(${sweep}% + 14%))`
+    if (!live) return
+    const update = () => {
+      if (touching.current) return
+      const [x, y] = local(pointer.x.get(), pointer.y.get())
+      aim(x, y, pointer.active.get() > 0.5)
+    }
+    const offs = [pointer.x.on('change', update), pointer.y.on('change', update), pointer.active.on('change', update)]
+    return () => offs.forEach((off) => off())
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [live, pointer])
+
+  // A finger (or a pressed mouse) on the statue itself: the light follows it,
+  // and on the drawing a drag smudges the graphite.
+  const drag = useRef<{ x: number; y: number; id: number } | null>(null)
+  const release = useRef<ReturnType<typeof setTimeout>>(undefined)
+  const down = (e: React.PointerEvent) => {
+    const [x, y] = local(e.clientX, e.clientY)
+    drag.current = { x, y, id: e.pointerId }
+    if (e.pointerType !== 'mouse') {
+      touching.current = true
+      clearTimeout(release.current)
+      aim(x, y, true)
+    }
+  }
+  const move = (e: React.PointerEvent) => {
+    const [x, y] = local(e.clientX, e.clientY)
+    if (e.pointerType !== 'mouse') aim(x, y, true)
+    const d = drag.current
+    if (d && d.id === e.pointerId) {
+      engine.current?.drag(x, y, x - d.x, y - d.y)
+      d.x = x
+      d.y = y
+    }
+  }
+  const up = (e: React.PointerEvent) => {
+    drag.current = null
+    if (e.pointerType === 'mouse') return
+    // let the light linger where the finger left it, then drift again
+    clearTimeout(release.current)
+    release.current = setTimeout(() => {
+      touching.current = false
+      aim(0.5, 0.4, false)
+    }, 1600)
+  }
+  useEffect(() => () => clearTimeout(release.current), [])
 
   const caption = `Fig. 1 · ${dark ? 'Shipped in marble' : 'Drafted in graphite'}`
 
   return (
     <figure className="relative w-full">
-      <div ref={ref} className="relative aspect-square w-full perspective-[1000px]">
+      <div ref={stage} className="relative aspect-square w-full perspective-[1000px]">
         <motion.div
           className="absolute inset-0"
           style={{ rotateX: rx, rotateY: ry, maskImage: FADE, WebkitMaskImage: FADE }}
@@ -100,24 +124,23 @@ export function Statue({ pointer }: { pointer: { x: MotionValue<number>; y: Moti
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.4, ease }}
         >
-          {dark ? (
-            <>
-              {/* Dimmed by opacity, not brightness: the tile's background stays the page's. */}
-              <img src={MARBLE} alt="" className="absolute inset-0 h-full w-full object-contain opacity-[0.24]" />
-              <motion.img
-                src={MARBLE}
-                alt=""
-                className="absolute inset-0 h-full w-full object-contain"
-                style={{ maskImage: light, WebkitMaskImage: light }}
-              />
-            </>
-          ) : (
-            <motion.img
-              src={SKETCH}
-              alt=""
-              className="absolute inset-0 h-full w-full object-contain"
-              style={{ maskImage: draw, WebkitMaskImage: draw }}
+          {live ? (
+            <canvas
+              ref={mount}
+              aria-hidden
+              className="absolute inset-0 h-full w-full touch-pan-y select-none transition-opacity duration-700"
+              style={{ opacity: shown ? 1 : 0 }}
+              onPointerDown={down}
+              onPointerMove={move}
+              onPointerUp={up}
+              onPointerCancel={up}
+              onPointerLeave={up}
             />
+          ) : dark ? (
+            <img src={SRC.marble} alt="" className="absolute inset-0 h-full w-full object-contain opacity-70" />
+          ) : (
+            // the colour channels hold stroke timing; brightness(0) leaves the graphite
+            <img src={SRC.graphite} alt="" className="absolute inset-0 h-full w-full object-contain opacity-90 brightness-0" />
           )}
         </motion.div>
       </div>
