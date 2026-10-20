@@ -25,6 +25,8 @@ export type Project = {
   detail?: { src: string; alt: string; ratio: number }
   /** app: real screens, in the light and dark theme of the app itself. */
   screens?: { light: string[]; dark: string[] }
+  /** app: the product's own world behind the phones, wide and tall crops, by day (light) and by night (dark). */
+  scene?: { light: string; dark: string; lightTall: string; darkTall: string }
   /** Plate backdrop, light and dark: a whisper of the product's own colour. */
   tint: [string, string]
   /** The PM story, short: what was wrong, the decision, what got built, what it did. */
@@ -46,14 +48,21 @@ export const projects: Project[] = [
       light: ['/work/tp-08-earth.webp', '/work/tp-09-earth.webp', '/work/tp-10-earth.webp'],
       dark: ['/work/tp-08-forest.webp', '/work/tp-09-forest.webp', '/work/tp-10-forest.webp'],
     },
+    // drawn by the app's own tree engine: the Gangetic plain in the morning, and under the moon
+    scene: {
+      light: '/work/tp-plate-day.webp',
+      dark: '/work/tp-plate-night.webp',
+      lightTall: '/work/tp-plate-day-m.webp',
+      darkTall: '/work/tp-plate-night-m.webp',
+    },
     tint: ['#ECEFE4', '#111510'],
     story: {
       problem:
         'A plain timer asks nothing of you, so it is easy to ignore. Here a tree grows while you focus and stays in your orchard; in the stakes modes, leaving early kills it.',
-      call: 'Let people pick the stakes: Gardener asks nothing, Farmer runs on honour, Kisan locks your apps behind a physical seed. Phone face down, the tree lives; switch apps, it withers.',
+      call: 'Let people pick the stakes: Gardener Mode asks nothing, Farmer Mode withers the tree if you switch apps, and Peepal Mode locks your apps behind a physical seed. Phone face down, the tree lives.',
       build:
         'Mapped 12 user journeys, designed an onboarding that never asks for an account, then 35 screens across 11 flows in two themes, with trees that grow through five stages, 14 species and 5 regions. All in one build book.',
-      result: 'In build now with senior engineers, against the book. Version 1.4, and every change still lands there first.',
+      result: 'In build now with senior engineers, against the book. Version 1.5, and every change still lands there first.',
     },
   },
   {

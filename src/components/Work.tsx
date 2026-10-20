@@ -141,15 +141,37 @@ function Plate({ project: p }: { project: Project }) {
       viewport={{ once: true, margin: '0px 0px -10% 0px' }}
       transition={{ duration: 1.2, ease }}
     >
-      <span
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(90%_70%_at_15%_0%,rgba(255,255,255,0.7),transparent_60%)] dark:bg-[radial-gradient(90%_70%_at_15%_0%,rgba(255,255,255,0.05),transparent_60%)]"
-      />
+      {p.scene ? (
+        <Backdrop scene={p.scene} />
+      ) : (
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(90%_70%_at_15%_0%,rgba(255,255,255,0.7),transparent_60%)] dark:bg-[radial-gradient(90%_70%_at_15%_0%,rgba(255,255,255,0.05),transparent_60%)]"
+        />
+      )}
       {p.kind === 'app' ? <AppScene project={p} depth={depth} /> : <WebScene project={p} depth={depth} />}
       <span className="absolute bottom-4 left-5 flex items-center gap-1.5 rounded-full bg-black/70 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.12em] text-white opacity-0 backdrop-blur-xs transition-opacity duration-300 group-hover:opacity-100 sm:bottom-6 sm:left-7">
         Open <ArrowUpRight className="h-3 w-3" />
       </span>
     </motion.a>
+  )
+}
+
+// The app's own world behind its phones: the same field the app draws, by day in the
+// light theme and under the moon in the dark one. It leans in a touch on hover.
+function Backdrop({ scene }: { scene: NonNullable<Project['scene']> }) {
+  const dark = useIsDark()
+  return (
+    <picture className="pointer-events-none absolute inset-0" aria-hidden>
+      <source media="(min-width: 640px)" srcSet={dark ? scene.dark : scene.light} />
+      <img
+        src={dark ? scene.darkTall : scene.lightTall}
+        alt=""
+        loading="lazy"
+        decoding="async"
+        className="h-full w-full scale-[1.01] object-cover object-bottom transition-transform duration-[1600ms] ease-out group-hover:scale-[1.035]"
+      />
+    </picture>
   )
 }
 
