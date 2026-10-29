@@ -145,24 +145,24 @@ export const projects: Project[] = [
     name: 'Ascend',
     lane: 'Solo',
     year: '2025',
-    line: 'Six questions, then a short list of courses you’re likely to finish, and why each one.',
+    line: 'Say where you are in your own words. The AI maps your gaps to real course modules and picks one course you can finish.',
     url: 'https://ascendmvp.vercel.app',
     kind: 'web',
     image: '/work/ascend.webp',
-    alt: 'Ascend: Overwhelmed by learning choices? Find your next skill in 15 minutes.',
+    alt: 'Ascend: One course you can finish. First 25 minutes on your calendar, within 48 hours.',
     detail: {
       src: '/work/ascend-detail.webp',
-      alt: 'Step 1 of 6: Where are you right now?',
-      ratio: 2.7,
+      alt: 'Rules: 69 checked, 4 to the AI. AI: read your 46 words, found 5 gaps, mapped 15 modules across 4 courses, chose 1, by Claude Opus 5.5. Checks: 0 invented courses, 0 invented modules.',
+      ratio: 1.95,
     },
     tint: ['#F1EEF4', '#141218'],
     story: {
       problem:
         'Surveyed early-career learners first: 61% named choice overload, 52% feared wasting money on the wrong course, 87% rated peer proof as decisive.',
-      call: 'A narrowing machine, not another catalog. RICE put the guided assessment and peer reviews in the MVP and pushed community features out.',
+      call: 'Rules keep it honest; the AI does the reading. Code checks 69 verified courses against your hours, level and budget, and the AI only chooses among what passes.',
       build:
-        'An LLM ranks 64 curated courses against six answers. Malformed output is retried once; any failure falls back to a deterministic scorer, so it never errors or hangs.',
-      result: 'My graduation project at the NextLeap fellowship: built in four days, after 25+ user interviews, and still live.',
+        'Claude reads your situation, maps your gaps to real module names, judges the courses you already have open and tailors each week to your job. Code checks every answer, so no invented course, module or price gets through.',
+      result: 'My graduation project at the NextLeap fellowship, from a survey with 30+ responses and 5 interviews. Rebuilt in 2026 so the AI shows its work on every pick.',
     },
   },
 ]
